@@ -1,9 +1,9 @@
-import NewsletterEditor from "./components/NewsletterEditor";
+import NewsletterEditorv2 from "./components/NewsletterEditorv2";
 
 function App() {
   return (
     <div>
-      <NewsletterEditor />
+      <NewsletterEditorv2 />
     </div>
   );
 }
