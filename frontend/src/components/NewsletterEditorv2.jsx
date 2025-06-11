@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { useState, useEffect } from "react";
 import { getEmailHtml } from "./emailTemplate";
@@ -10,8 +10,6 @@ import {
   Download,
   Eye,
   ArrowLeft,
-  Plus,
-  Minus,
   Mail,
   FileText,
   Users,
