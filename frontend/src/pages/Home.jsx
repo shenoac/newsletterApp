@@ -7,12 +7,12 @@ import { useAuth } from "../AuthContext";
 export default function Home() {
   const [drafts, setDrafts] = useState({});
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, token } = useAuth();
 
   useEffect(() => {
     async function loadDrafts() {
       try {
-        const all = await fetchDrafts();
+        const all = await fetchDrafts(token);
         setDrafts(all);
       } catch (err) {
         console.error("Failed to load drafts:", err);
