@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchDrafts } from "../api/drafts";
 import { Calendar, Edit3, Mail, PlusCircle } from "lucide-react";
+import { useAuth } from "../AuthContext";
 
 export default function Home() {
   const [drafts, setDrafts] = useState({});
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   useEffect(() => {
     async function loadDrafts() {
@@ -78,13 +80,34 @@ export default function Home() {
                 <p className="text-sm text-gray-500">Keelworks</p>
               </div>
             </div>
-            <button
+            {/* <button
               onClick={() => navigate("/editor")}
               className="bg-gradient-to-r from blue-600 to indigo-600 text-white px-6 py-2.5 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
             >
               <PlusCircle className="w-5 h-5" />
               <span>Create Newsletter</span>
-            </button>
+            </button> */}
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => navigate("/editor")}
+                className="bg-gradient-to-r from blue-600 to indigo-600 text-white px-6 py-2.5 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
+              >
+                <PlusCircle className="w-5 h-5" />
+                <span>Create Newsletter</span>
+              </button>
+              <button
+                onClick={() => navigate("/create-user")}
+                className="bg-gradient-to-r from blue-600 to indigo-600 text-white px-6 py-2.5 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
+              >
+                Add User
+              </button>
+              <button
+                onClick={logout}
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -111,7 +134,7 @@ export default function Home() {
                   <h3 className="text-xl font-semibold text-gray-900">
                     Recent Newsletter
                   </h3>
-                  <button className="text-white-600 hover:text-white-700 font-medium text-sm hover:underline">
+                  <button className="text-white hover:text-white-700 font-medium text-sm hover:underline">
                     View All
                   </button>
                 </div>

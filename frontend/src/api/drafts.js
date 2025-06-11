@@ -17,7 +17,7 @@ export async function fetchDraft(key) {
 export async function saveDraft(key, data) {
   const res = await fetch("/api/drafts", {
     method: "POST",
-    headers: { "content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ key, data }),
   });
   if (!res.ok) throw new Error("Failed to save draft");
