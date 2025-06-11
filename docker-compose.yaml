@@ -13,7 +13,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    restart: unless-stopped
+    # restart: unless-stopped
     env_file:
       - ./backend/.env
     ports:

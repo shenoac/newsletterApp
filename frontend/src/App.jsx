@@ -12,14 +12,50 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Editor from "./pages/Editor";
+import { AuthProvider } from "./AuthContext";
+import Login from "./pages/Login";
+import RequireAuth from "./RequireAuth";
+import CreateUser from "./pages/CreateUser";
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/editor/:key?" element={<Editor />} />
-      </Routes>
-    </Router>
+    // <Router>
+    //   <Routes>
+    //     <Route path="/" element={<Home />} />
+    //     <Route path="/editor/:key?" element={<Editor />} />
+    //   </Routes>
+    // </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/create-user"
+            element={
+              <RequireAuth>
+                <CreateUser />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                {" "}
+                <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/editor/:key?"
+            element={
+              <RequireAuth>
+                <Editor />
+              </RequireAuth>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
