@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getEmailHtml } from "./emailTemplate";
 import { getreactComponent } from "./reactTemplate";
 import { fetchDraft, saveDraft } from "../api/drafts";
+import { useAuth } from "../AuthContext";
 import {
   Save,
   Download,
@@ -18,6 +19,7 @@ import {
 } from "lucide-react";
 
 export default function NewsletterEditorv2({ draftKey }) {
+  const { token } = useAuth();
   // const handleNavigateHome = () => {
   //   // Replace with your navigation logic
   //   // Navigate("/home");
@@ -90,7 +92,7 @@ export default function NewsletterEditorv2({ draftKey }) {
 
   useEffect(() => {
     if (!draftKey) return;
-    fetchDraft(draftKey)
+    fetchDraft(token, draftKey)
       .then((data) => {
         setMonth(data.month || "April");
         setYear(data.year || "2025");
@@ -148,7 +150,7 @@ export default function NewsletterEditorv2({ draftKey }) {
     };
 
     try {
-      const saved = await saveDraft(key, data);
+      const saved = await saveDraft(token, key, data);
       alert(`Saved draft: ${saved.key}`);
       if (!draftKey) {
         // Handle navigation to new draft URL
