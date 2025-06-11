@@ -1,18 +1,36 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchDrafts } from "../api/drafts";
-import { Calendar, Edit3, Mail, PlusCircle } from "lucide-react";
+import { deleteDraft, fetchDrafts } from "../api/drafts";
+import { Calendar, Edit3, Mail, PlusCircle, Trash2 } from "lucide-react";
 import { useAuth } from "../AuthContext";
 
 export default function Home() {
   const [drafts, setDrafts] = useState({});
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { logout, token } = useAuth();
+
+  async function handleDelete(key) {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this newsletter?"
+    );
+    if (!confirmDelete) return;
+    try {
+      await deleteDraft(token, key);
+      setDrafts((prev) => {
+        const updated = { ...prev };
+        delete updated[key];
+        return updated;
+      });
+    } catch (err) {
+      console.error("Failed to delete draft:", err);
+      alert("Could not delete the newsletter.");
+    }
+  }
 
   useEffect(() => {
     async function loadDrafts() {
       try {
-        const all = await fetchDrafts();
+        const all = await fetchDrafts(token);
         setDrafts(all);
       } catch (err) {
         console.error("Failed to load drafts:", err);
@@ -23,47 +41,6 @@ export default function Home() {
   }, []);
 
   return (
-    // <div className="p-8 max-w-4xl mx-auto">
-    //   <header className="flex items-center justify-between mb-8">
-    //     <h1 className="text-3xl font-bold">All Newsletters</h1>
-    //     <button
-    //       onClick={() => navigate("/editor")}
-    //       className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-    //     >
-    //       + New Newsletter
-    //     </button>
-    //   </header>
-
-    //   <ul className="space-y-4">
-    //     {Object.keys(drafts).length === 0 ? (
-    //       <li className="italic text-gray-500">No drafts yet.</li>
-    //     ) : (
-    //       Object.entries(drafts).map(([key, data]) => (
-    //         <li
-    //           key={key}
-    //           className="flex justify-between items-center border p-4 rounded hover:shadow-lg transition"
-    //         >
-    //           <div>
-    //             <div className="text-lg font-medium">{key}</div>
-    //             <div className="text-sm text-gray-600">
-    //               Last edited:{" "}
-    //               {new Date(data.updatedAt).toLocaleString(undefined, {
-    //                 dateStyle: "medium",
-    //                 timeStyle: "short",
-    //               })}
-    //             </div>
-    //           </div>
-    //           <button
-    //             onClick={() => navigate(`/editor/${encodeURIComponent(key)}`)}
-    //             className="text-blue-600 hover:underline"
-    //           >
-    //             Edit
-    //           </button>
-    //         </li>
-    //       ))
-    //     )}
-    //   </ul>
-    // </div>
     <div className="w-screen min-h-screen bg-gradient-to-br from-blue-50 via white to-indigo-50">
       {/* header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-blue-100 sticky top-0 z-50">
@@ -178,6 +155,12 @@ export default function Home() {
                           }
                         >
                           <Edit3 className="w-4 h-4" />
+                        </button>
+                        <button
+                          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          onClick={() => handleDelete(key)}
+                        >
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
