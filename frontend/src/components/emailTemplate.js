@@ -17,7 +17,6 @@ export function getEmailHtml({
   founderMessage,
   // founderPhotoUrl,
   quote,
-  festivals,
   productTitle,
   productDescription,
   teamHighlight,
@@ -27,6 +26,9 @@ export function getEmailHtml({
   volunteerBio,
   volunteerImageUrl,
   whyVolunteer,
+  associateName,
+  diversityDetails,
+  associateImageUrl,
 }) {
   return `
 <!DOCTYPE html>
@@ -258,99 +260,7 @@ export function getEmailHtml({
             </tr>
           </table>
 
-          <!-- Festivals / Highlights Section -->
-          <table
-            width="95%"
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="
-              margin: 20px auto;
-              background: linear-gradient(to bottom, #7da7c5 0%, #2f5f7d 100%);
-              border-radius: 8px;
-              padding: 20px;
-              box-shadow: 0 0 0 1px rgba(71, 71, 71, 0.1);
-            "
-          >
-            <tr>
-              <td
-                align="center"
-                style="
-                  padding: 20px;
-                  border-radius: 8px 8px 0 0;
-                  text-align: left;
-                "
-              >
-                <h2
-                  style="
-                    color: #fff;
-                    margin: 0;
-                    font-size: 24px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  Community & Event Highlights
-                </h2>
-              </td>
-            </tr>
-            ${festivals
-              .map(
-                (festival) => `
-                  <tr>
-                    <td style="padding: 10px;">
-                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                        <tr style="background: #426b8d;">
-                          <!-- Left: Text Section -->
-                          <td
-                            style="
-                              width: 60%;
-                              padding: 15px;
-                              border-radius: 8px 0 0 8px;
-                              color: #000;
-                              vertical-align: top;
-                              font-family: 'Lato', Arial, sans-serif;
-                            "
-                          >
-                            <h3 style="margin-bottom: 10px; color: #f9f9f9; font-weight: 600; font-family: 'Lato', Arial, sans-serif;">
-                              ${festival.title}
-                            </h3>
-                            <p style="margin: 0; color: #f9f9f9; font-family: 'Lato', Arial, sans-serif;">
-                              ${festival.description}
-                            </p>
-                          </td>
-                          <!-- Right: Image Section -->
-                          <td
-                            style="
-                              width: 40%;
-                              padding: 15px;
-                              border-radius: 0 8px 8px 0;
-                              vertical-align: top;
-                              text-align: right;
-                            "
-                          >
-                            <img
-                              src="${festival.imageUrl}"
-                              alt="${festival.alt || ""}"
-                              style="
-                                width: 100%;
-                                max-width: 180px;
-                                height: auto;
-                                border-radius: 8px;
-                                object-fit: contain;
-                                display: block;
-                              "
-                            />
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                `
-              )
-              .join("")}
-          </table>
+          
 
           <!-- Product Section -->
           <table
@@ -493,6 +403,72 @@ export function getEmailHtml({
                 ${renderParagraphs(volunteerBio, "#fff")}
                 <span style="font-size: 20px;font-weight: 600; margin-top: 5px;font-family:'Lato', Arial, sans-serif;color:#fff;">Why ${volunteerName}?</span>
                 ${renderParagraphs(whyVolunteer, "#fff")}
+              </td>
+            </tr>
+          </table>
+          <!-- Diversity Section -->
+          <table
+            width="95%"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            style="
+              margin: 20px auto;
+              background: #4a6a83;
+              border-radius: 8px;
+              box-shadow: 0 0 0 1px rgba(71, 71, 71, 0.1);
+            "
+          >
+            <tr>
+              <td style="padding-top: 20px; padding-left: 20px">
+                <h2
+                  style="
+                    color: #fff;
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    font-family: 'Lato', Arial, sans-serif;
+                  "
+                >
+                  Diversity At Keelworks
+                </h2>
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 20px;
+                  text-align: left;
+                  color: #fff;
+                  font-family: 'Lato', Arial, sans-serif;
+                "
+              >
+                <img
+                  src="https://drive.usercontent.google.com/download?id=${associateImageUrl}&export=view&authuser=0"
+                  alt="Volunteer Image"
+                  align="left"
+                  style="
+                    float: left;
+                    width: 200px;
+                    max-width: 100%;
+                    margin: 0 20px 0px 0;
+                    border-radius: 8px;
+                    display: block;
+                  "
+                />
+                <h2
+                  style="
+                    margin-top: 0;
+                    margin-bottom: 8px;
+                    font-size: 20px;
+                    line-height: 1.2;
+                    font-family: 'Lato', Arial, sans-serif;
+                  "
+                >
+                  ${associateName}
+                </h2>
+                ${renderParagraphs(diversityDetails, "#fff")}
               </td>
             </tr>
           </table>

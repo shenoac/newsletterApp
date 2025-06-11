@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", authRouter);
-app.use("/api/drafts", draftRouter);
+app.use("/api/drafts", authMiddleware, draftRouter);
 
 const mongoUri = process.env.MONGO_URI || "mongodb://mongo:27017/newsletter";
 mongoose

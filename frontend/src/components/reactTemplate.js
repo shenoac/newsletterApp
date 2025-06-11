@@ -4,7 +4,6 @@ export function getreactComponent({
   founderMessage,
   founderPhotoUrl,
   quote,
-  festivals,
   productTitle,
   productDescription,
   teamName,
@@ -14,12 +13,14 @@ export function getreactComponent({
   volunteerBio,
   whyVolunteer,
   volunteerImageUrl,
+  associateName,
+  diversityDetails,
+  associateImageUrl,
 }) {
   return `
 import React from "react";
 
 export default function NewsletterTemplate() {
-  const festivals = ${JSON.stringify(festivals, null, 2)};
 
   // Helper: Render string as multiple paragraphs, split by double line breaks.
   function renderParagraphs(str, color = "#000") {
@@ -117,36 +118,7 @@ export default function NewsletterTemplate() {
 
         </section>
 
-        {/* Festivals Highlights */}
-        <section className="w-[95%] mx-auto my-6 rounded-2xl shadow bg-gradient-to-b from-[#8fb2c8] to-[#446a88] overflow-hidden">
-          <h2 className="text-xl font-bold text-white bg-gradient-to-b from-[#7da7c5] to-[#2f5f7d] rounded-t-2xl p-4 text-center uppercase">
-            Community &amp; Event Highlights
-          </h2>
-          <div className="flex flex-col space-y-6 p-4">
-            {festivals.map((festival, i) => (
-              <div
-                key={i}
-                className="flex flex-col md:flex-row bg-[#426b8d] rounded-2xl shadow-md overflow-hidden"
-              >
-                {/* Left: Text */}
-                <div className="md:w-3/5 p-6 flex flex-col justify-center">
-                  <h3 className="font-semibold text-white text-lg mb-2">
-                    {festival.title}
-                  </h3>
-                  <p className="text-white">{festival.description}</p>
-                </div>
-                {/* Right: Image */}
-                <div className="md:w-2/5 flex justify-end items-center p-4">
-                  <img
-                    src={festival.imageUrl}
-                    alt={festival.title}
-                    className="w-full max-w-[180px] rounded-2xl object-contain shadow"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        
 
         {/* Product Section */}
         <section className="w-[95%] mx-auto my-6 bg-gradient-to-b from-[#a4c6dd] to-[#507da3] text-white rounded-2xl shadow p-8">
@@ -180,6 +152,23 @@ export default function NewsletterTemplate() {
 
             <h2 className="text-2xl font-bold uppercase mb-2">Why ${volunteerName}?</h2>
             {renderParagraphs(\`${whyVolunteer}\`, "#fff")}
+          </div>
+        </section>
+
+        {/* Diversity Section */}
+        <section className="w-[95%] mx-auto my-6 bg-[#4a6a83] text-white rounded-2xl shadow p-8 flex flex-col md:flex-row items-start">
+          <div className="md:w-1/3 w-full flex justify-center mb-6 md:mb-0">
+            <img
+              src="https://drive.usercontent.google.com/download?id=${associateImageUrl}&export=view&authuser=0"
+              alt="Associate"
+              className="w-48 h-48 object-cover rounded-2xl border shadow"
+            />
+          </div>
+          <div className="md:w-2/3 md:pl-8">
+            <h2 className="text-2xl font-bold uppercase mb-2">${associateName}</h2>
+            {renderParagraphs(\`${diversityDetails}\`, "#fff")}
+
+            
           </div>
         </section>
       </div>
