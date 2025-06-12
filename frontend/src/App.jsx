@@ -16,6 +16,7 @@ import { AuthProvider } from "./AuthContext";
 import Login from "./pages/Login";
 import RequireAuth from "./RequireAuth";
 import CreateUser from "./pages/CreateUser";
+import ChangePassword from "./pages/ChangePassword";
 
 export default function App() {
   return (
@@ -51,6 +52,14 @@ export default function App() {
             element={
               <RequireAuth>
                 <Editor />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/change-password"
+            element={
+              <RequireAuth>
+                <ChangePassword />
               </RequireAuth>
             }
           />

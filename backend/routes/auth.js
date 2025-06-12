@@ -43,6 +43,18 @@ router.post("/users", authMiddleware, async (req, res) => {
   res.status(201).json({ id: user._id, email: user.email });
 });
 
+router.post("/change-password", authMiddleware, async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  const user = await User.findById(req.user.userId);
+  if (!user) return res.status(404).json({ error: "User not found" });
+  const match = await bcrypt.compare(currentPassword, user.passwordHash);
+  if (!match)
+    return res.status(400).json({ error: "Current password incorrect" });
+  user.passwordHash = await bcrypt.hash(newPassword, 10);
+  await user.save();
+  res.json({ message: "Password updated" });
+});
+
 async function seedTestUsers() {
   const testAccounts = [
     { email: "jay.patel@keelworks.org", password: "test@123" },

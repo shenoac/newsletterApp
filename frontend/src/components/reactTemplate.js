@@ -307,7 +307,7 @@ export default function NewsletterTemplate() {
       <div className="max-w-4xl mx-auto bg-gradient-to-b from-[#dcebf7] to-[#6a9bbd] px-4 py-10 shadow-lg rounded-b-2xl">
         {/* Quote / About Section */}
         <section className="w-[95%] mx-auto my-6 bg-gradient-to-b from-[#3f5689] to-[#1b2e59] text-white rounded-2xl shadow p-8 text-lg">
-          <p className="m-0">{quote}</p>
+          <p className="m-0">${quote}</p>
         </section>
 
         {/* Founder Message */}
@@ -392,6 +392,12 @@ export default function NewsletterTemplate() {
           />
           <h3 className="text-white text-lg font-semibold mb-2">${volunteerName}</h3>
           {renderParagraphs(\`${volunteerBio}\`, "#fff")}
+          <span
+            className="text-xl font-semibold mt-[5px] text-white"
+          >
+            Why {volunteerName}?
+          </span>
+          {renderParagraphs(\`${whyVolunteer}\`, "#fff")}
           <div className="clear-both" />
         </section>
 
