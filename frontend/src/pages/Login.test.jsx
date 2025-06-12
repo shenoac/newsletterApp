@@ -19,7 +19,9 @@ const renderLogin = () =>
 
 test("toggles password visibility", () => {
   renderLogin();
-  const toggleButton = screen.getByRole("button", { hidden: true });
+  const toggleButton = screen.getByRole("button", {
+    name: /toggle password visibility/i,
+  });
   const passwordInput = screen.getByLabelText(/password/i);
   expect(passwordInput).toHaveAttribute("type", "password");
   fireEvent.click(toggleButton);

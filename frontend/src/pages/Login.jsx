@@ -88,12 +88,13 @@ export default function Login() {
                   className="w-full pl-12 pr-12 py-3 bg-white/70 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 text-gray-600"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter you password"
+                  placeholder="Enter your password"
                   required
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-4 flex items items-center"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                  aria-label="Toggle password visibility"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
