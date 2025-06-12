@@ -20,3 +20,16 @@ export async function createUser(token, email, password) {
   if (!res.ok) throw new Error("Failed to create user");
   return res.json();
 }
+
+export async function changePassword(token, currentPassword, newPassword) {
+  const res = await fetch("/api/change-password", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ currentPassword, newPassword }),
+  });
+  if (!res.ok) throw new Error("Failed to change Password");
+  return res.json();
+}

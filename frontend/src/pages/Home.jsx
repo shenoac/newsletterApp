@@ -79,6 +79,12 @@ export default function Home() {
                 Add User
               </button>
               <button
+                onClick={() => navigate("/change-password")}
+                className="bg-gradient-to-r form-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
+              >
+                Change Password
+              </button>
+              <button
                 onClick={logout}
                 className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2"
               >
