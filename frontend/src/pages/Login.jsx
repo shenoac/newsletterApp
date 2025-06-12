@@ -57,7 +57,10 @@ export default function Login() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* email input */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                className="block text-sm font-medium text-gray-700 mb-2"
+                htmlFor="email"
+              >
                 Email Address
               </label>
               <div className="relative">
@@ -65,6 +68,7 @@ export default function Login() {
                   <Mail className="w-5 h-5 text-gray-400" />
                 </div>
                 <input
+                  id="email"
                   type="email"
                   className="w-full pl-12 pr-4 py-3 bg-white/70 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 text-gray-600"
                   value={email}
@@ -76,7 +80,10 @@ export default function Login() {
             </div>
             {/* password input  */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                className="block text-sm font-medium text-gray-700 mb-2"
+                htmlFor="password"
+              >
                 Password
               </label>
               <div className="relative">
@@ -84,6 +91,7 @@ export default function Login() {
                   <Lock className="w-5 h-5 text-gray-400" />
                 </div>
                 <input
+                  id="password"
                   type={showPassword ? "text" : "password"}
                   className="w-full pl-12 pr-12 py-3 bg-white/70 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 text-gray-600"
                   value={password}
@@ -94,7 +102,7 @@ export default function Login() {
                 <button
                   type="button"
                   className="absolute inset-y-0 right-0 pr-4 flex items-center"
-                  aria-label="Toggle password visibility"
+                  aria-label="Toggle visibility"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
