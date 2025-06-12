@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import eslint from "vite-plugin-eslint";
@@ -14,5 +14,10 @@ export default defineConfig({
         secure: false,
       },
     },
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: "./src/setupTests.js",
+    globals: true,
   },
 });
