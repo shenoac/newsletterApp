@@ -12,6 +12,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Editor from "./pages/Editor";
+// import Test from "./components/test";
 import { AuthProvider } from "./AuthContext";
 import Login from "./pages/Login";
 import RequireAuth from "./RequireAuth";
@@ -22,7 +23,7 @@ export default function App() {
   return (
     // <Router>
     //   <Routes>
-    //     <Route path="/" element={<Home />} />
+    //     <Route path="/" element={<Test />} />
     //     <Route path="/editor/:key?" element={<Editor />} />
     //   </Routes>
     // </Router>

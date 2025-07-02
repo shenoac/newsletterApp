@@ -1,12 +1,608 @@
+// function renderParagraphs(str, color = "#000") {
+//   if (!str) return "";
+//   return str
+//     .split(/\n\s*\n/) // Split by blank lines into paragraphs
+//     .map(
+//       (para) => `
+//       <p style="
+//         margin: 0 0 10px 0;
+//         line-height: 1.4;
+//         text-align: left;
+//         color: ${color};
+//         font-family: 'Lato', Arial, sans-serif;
+//         font-size: 16px;
+//       ">
+//         ${para.replace(/\n/g, "<br>")}
+//       </p>
+//     `
+//     )
+//     .join("");
+// }
+
+// export function getEmailHtml({
+//   month,
+//   year,
+//   founderMessage,
+//   quote,
+//   productTitle,
+//   productDescription,
+//   teamHighlight,
+//   teamName,
+//   teamImageUrl,
+//   volunteerName,
+//   volunteerBio,
+//   volunteerImageUrl,
+//   whyVolunteer,
+//   associateName,
+//   diversityDetails,
+//   associateImageUrl,
+// }) {
+//   return `
+// <!DOCTYPE html>
+// <html lang="en">
+//   <head>
+//     <meta charset="UTF-8" />
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+//     <title>Monthly Newsletter</title>
+//     <!-- Web fonts may not load in all email clients; still included for clients that do -->
+//     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
+//     <link href="https://fonts.googleapis.com/css?family=Raleway:500,600&display=swap" rel="stylesheet" />
+//     <style>
+//       /* Media queries for responsive design */
+//       @media only screen and (max-width: 600px) {
+//         .container {
+//           width: 100% !important;
+//           max-width: 100% !important;
+//         }
+//         .mobile-padding {
+//           padding: 10px !important;
+//         }
+//         .mobile-text {
+//           font-size: 14px !important;
+//         }
+//         .mobile-title {
+//           font-size: 24px !important;
+//         }
+//         .mobile-header {
+//           font-size: 28px !important;
+//         }
+//         .mobile-image {
+//           width: 100% !important;
+//           max-width: 100% !important;
+//           margin: 0 0 15px 0 !important;
+//           float: none !important;
+//           display: block !important;
+//         }
+//         .mobile-center {
+//           text-align: center !important;
+//         }
+//         .mobile-button {
+//           display: block !important;
+//           width: 80% !important;
+//           padding: 15px 20px !important;
+//           font-size: 18px !important;
+//         }
+//         .mobile-footer-links {
+//           text-align: center !important;
+//           padding-right: 0 !important;
+//         }
+//         .mobile-footer-social {
+//           text-align: center !important;
+//           padding-top: 15px !important;
+//         }
+//       }
+
+//       @media only screen and (max-width: 480px) {
+//         .mobile-header {
+//           font-size: 24px !important;
+//         }
+//         .mobile-title {
+//           font-size: 20px !important;
+//         }
+//         .mobile-text {
+//           font-size: 13px !important;
+//         }
+//       }
+//     </style>
+//   </head>
+//   <body style="
+//       margin: 0;
+//       padding: 0;
+//       background-color: #dcebf7;
+//       -webkit-text-size-adjust: 100%;
+//     "
+//   >
+
+//     <!-- Wrapper to center everything -->
+//     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0; padding: 20px 10px;">
+//       <tr>
+//         <td align="center">
+
+//           <!-- Container -->
+//           <table role="presentation" width="800" cellpadding="0" cellspacing="0" border="0" class="container" style="
+//               width: 100% !important;
+//               max-width: 800px;
+//               margin: 0 auto;
+//               background: #bcf2fc;
+//               border-collapse: collapse;
+//             "
+//           >
+//             <!-- Header Title -->
+//             <tr>
+//               <td align="center" class="mobile-padding" style="padding: 20px;">
+//                 <h1 class="mobile-header" style="
+//                     margin: 0;
+//                     font-family: 'Raleway', Arial, sans-serif;
+//                     font-size: 34px;
+//                     font-weight: 600;
+//                     line-height: 1.2;
+//                     color: #0a154f;
+//                   "
+//                 >
+//                   Monthly Newsletter
+//                 </h1>
+//               </td>
+//             </tr>
+
+//             <!-- Logo -->
+//             <tr>
+//               <td align="center" class="mobile-padding" style="padding: 0 20px 20px;">
+//                 <img
+//                   src="https://keelworks.org/assets/keelworks_logo-CAApWs9G.jpg"
+//                   alt="Keelworks Foundation logo"
+//                   role="img"
+//                   width="720"
+//                   style="
+//                     display: block;
+//                     width: 100%;
+//                     max-width: 720px;
+//                     height: auto;
+//                     border: 0;
+//                   "
+//                 />
+//               </td>
+//             </tr>
+
+//             <!-- Main Content Wrapper -->
+//             <tr>
+//               <td style="
+//                   background: linear-gradient(to bottom, #538699 0%, #263f48 100%);
+//                   padding: 20px;
+//                 "
+//                 class="mobile-padding"
+//               >
+
+//                 <!-- Quote Section -->
+//                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+//                     background: linear-gradient(to bottom, #0c1769c7 0%, #3828579e 100%);
+//                     border-radius: 8px;
+//                     margin: 20px 0;
+//                     box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+//                   "
+//                 >
+//                   <tr>
+//                     <td class="mobile-padding" style="padding: 40px 20px;">
+//                       <h2 class="mobile-title" style="
+//                           margin: 0;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 28px;
+//                           font-weight: 500;
+//                           line-height: 1.2;
+//                           color: #ffffff;
+//                         "
+//                       >
+//                         ${quote}
+//                       </h2>
+//                     </td>
+//                   </tr>
+//                 </table>
+
+//                 <!-- Founder's Message -->
+//                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+//                     background: linear-gradient(to bottom, #869ba9 0%, #19394f 100%);
+//                     border-radius: 8px;
+//                     margin: 20px 0;
+//                     box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+//                   "
+//                 >
+//                   <tr>
+//                     <td class="mobile-padding" style="padding: 20px;">
+//                       <h2 class="mobile-title" style="
+//                           margin: 0 0 10px;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 28px;
+//                           font-weight: 500;
+//                           color: #ffffff;
+//                           line-height: 1.2;
+//                         "
+//                       >
+//                         Founder's Message for ${month} ${year}
+//                       </h2>
+//                       <div style="color: #ffffff;">
+//                         <img
+//                           src="https://keelworks.org/assets/Thomas-G-DHSeUrwJ.jpg"
+//                           alt="Portrait of the Founder"
+//                           role="img"
+//                           align="right"
+//                           class="mobile-image"
+//                           style="
+//                             display: block;
+//                             width: 200px;
+//                             max-width: 100%;
+//                             height: auto;
+//                             margin: 0 0 20px 20px;
+//                             border-radius: 8px;
+//                           "
+//                         />
+//                         ${renderParagraphs(founderMessage, "#ffffff")}
+//                       </div>
+//                     </td>
+//                   </tr>
+//                 </table>
+
+//                 <!-- Donate CTA -->
+//                 <table role="presentation" width="95%" cellpadding="0" cellspacing="0" border="0" style="
+//                     background: linear-gradient(to right, #5d98ae 0%, #263f48 150%);
+//                     border-radius: 8px;
+//                     margin: 20px 0;
+//                   "
+//                 >
+//                   <tr>
+//                     <td align="center" class="mobile-padding" style="padding: 20px;">
+//                       <h2 class="mobile-title" style="
+//                           margin: 0 0 10px;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 28px;
+//                           font-weight: 500;
+//                           color: #ffffff;
+//                           line-height: 1.2;
+//                         "
+//                       >
+//                         Your support makes a difference
+//                       </h2>
+//                       <p class="mobile-text" style="
+//                           margin: 0 0 20px;
+//                           font-family: 'Lato', Arial, sans-serif;
+//                           font-size: 16px;
+//                           line-height: 1.4;
+//                           color: #ffffff;
+//                         "
+//                       >
+//                         The work we do wouldn't be possible without the generosity of our supporters.
+//                       </p>
+//                       <a
+//                         href="https://www.every.org/keelworks-foundation?utm_campaign=donate-link"
+//                         role="button"
+//                         aria-label="Donate to Keelworks Foundation"
+//                         class="mobile-button"
+//                         style="
+//                           display: inline-block;
+//                           padding: 12px 36px;
+//                           background: linear-gradient(to right, #060e3a 0%, #374269 100%);
+//                           color: #ffffff !important;
+//                           text-decoration: none !important;
+//                           font-family: 'Lato', Arial, sans-serif;
+//                           font-size: 20px;
+//                           font-weight: 600;
+//                           line-height: 1.2;
+//                           border-radius: 25px;
+//                           white-space: nowrap;
+//                           text-align: center;
+//                         "
+//                       >
+//                         Donate Now
+//                       </a>
+//                     </td>
+//                   </tr>
+//                 </table>
+
+//                 <!-- Diversity Section -->
+//                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+//                     background: linear-gradient(to bottom, #5486b8b5 0%, #0a1d2fbf 100%);
+//                     border-radius: 8px;
+//                     margin: 20px 0;
+//                     box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+//                   "
+//                 >
+//                   <tr>
+//                     <td class="mobile-padding mobile-center" style="padding: 20px; color: #ffffff;">
+//                       <h2 class="mobile-title" style="
+//                           margin: 0 0 10px;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 28px;
+//                           font-weight: 500;
+//                           line-height: 1.2;
+//                         "
+//                       >
+//                         Diversity at Keelworks
+//                       </h2>
+//                       <img
+//                         src="https://drive.usercontent.google.com/download?id=${associateImageUrl}&export=view"
+//                         alt="Photo of ${associateName}"
+//                         role="img"
+//                         class="mobile-image"
+//                         style="
+//                           display: block;
+//                           float: left;
+//                           width: 200px;
+//                           max-width: 100%;
+//                           height: auto;
+//                           margin: 0 20px 20px 0;
+//                           border-radius: 8px;
+//                         "
+//                       />
+//                       <h3 class="mobile-title" style="
+//                           margin: 0 0 10px;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 24px;
+//                           font-weight: 500;
+//                           line-height: 1.2;
+//                         "
+//                       >
+//                         ${associateName}
+//                       </h3>
+//                       ${renderParagraphs(diversityDetails, "#ffffff")}
+//                     </td>
+//                   </tr>
+//                 </table>
+
+//                 <!-- Product Section -->
+//                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+//                     background: linear-gradient(to bottom, #253c52 0%, #5486b8 100%);
+//                     border-radius: 8px;
+//                     margin: 20px 0;
+//                     box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+//                   "
+//                 >
+//                   <tr>
+//                     <td class="mobile-padding" style="color: #ffffff;padding: 20px;">
+//                       <h2 class="mobile-title" style="
+//                           margin: 0 0 10px;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 28px;
+//                           font-weight: 500;
+//                           line-height: 1.2;
+//                         "
+//                       >
+//                         ${productTitle}
+//                       </h2>
+//                       ${renderParagraphs(productDescription, "#ffffff")}
+//                     </td>
+//                   </tr>
+//                 </table>
+
+//                 <!-- Team Section -->
+//                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+//                     background: linear-gradient(to bottom, #0a1d2f 0%, #5486b8 100%);
+//                     border-radius: 8px;
+//                     margin: 20px 0;
+//                     box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+//                   "
+//                 >
+//                   <tr>
+//                     <td class="mobile-padding" style="color: #ffffff; padding: 20px;">
+//                       <h2 class="mobile-title" style="
+//                           margin: 0 0 10px;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 28px;
+//                           font-weight: 500;
+//                           line-height: 1.2;
+//                         "
+//                       >
+//                         ${teamName}
+//                       </h2>
+//                       <img
+//                         src="https://drive.usercontent.google.com/download?id=${teamImageUrl}&export=view"
+//                         alt=""
+//                         role="img"
+//                         style="
+//                           display: block;
+//                           margin: 10px auto;
+//                           width: 80%;
+//                           max-width: 80%;
+//                           height: auto;
+//                           border-radius: 8px;
+//                         "
+//                       />
+//                       ${renderParagraphs(teamHighlight, "#ffffff")}
+//                     </td>
+//                   </tr>
+//                 </table>
+
+//                 <!-- Volunteer Spotlight -->
+//                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+//                     background: linear-gradient(to bottom, #5486b8 0%, #0a1d2f 100%);
+//                     border-radius: 8px;
+//                     margin: 20px 0 0;
+//                     box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+//                   "
+//                 >
+//                   <tr>
+//                     <td class="mobile-padding mobile-center" style="padding: 20px; color: #ffffff;">
+//                       <h2 class="mobile-title" style="
+//                           margin: 0 0 10px;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 28px;
+//                           font-weight: 500;
+//                           line-height: 1.2;
+//                         "
+//                       >
+//                         Associate of the Month
+//                       </h2>
+//                       <img
+//                         src="https://drive.usercontent.google.com/download?id=${volunteerImageUrl}&export=view"
+//                         alt="Photo of ${volunteerName}"
+//                         role="img"
+//                         class="mobile-image"
+//                         style="
+//                           display: block;
+//                           float: left;
+//                           width: 200px;
+//                           max-width: 100%;
+//                           height: auto;
+//                           margin: 0 20px 20px 0;
+//                           border-radius: 8px;
+//                         "
+//                       />
+//                       <h3 class="mobile-title" style="
+//                           margin: 0 0 10px;
+//                           font-family: 'Raleway', Arial, sans-serif;
+//                           font-size: 24px;
+//                           font-weight: 500;
+//                           line-height: 1.2;
+//                         "
+//                       >
+//                         ${volunteerName}
+//                       </h3>
+//                       ${renderParagraphs(volunteerBio, "#ffffff")}
+//                       <strong class="mobile-text" style="
+//                           display: block;
+//                           margin: 10px 0 5px;
+//                           font-family: 'Lato', Arial, sans-serif;
+//                           font-size: 20px;
+//                           color: #ffffff;
+//                         "
+//                       >
+//                         Why ${volunteerName}?
+//                       </strong>
+//                       ${renderParagraphs(whyVolunteer, "#ffffff")}
+//                     </td>
+//                   </tr>
+//                 </table>
+
+//               </td>
+//             </tr>
+
+//             <!-- Footer -->
+//             <tr>
+//               <td class="mobile-padding" style="background-color: #1f2e3d; padding: 20px; color: #ffffff;">
+//                 <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 0 0 20px 0;" />
+//                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+//                   <tr>
+//                     <td class="mobile-footer-links" style="vertical-align: top; padding-right: 20px;">
+//                       <nav aria-label="Footer links">
+//                         <p style="margin: 0 0 8px;"><a href="https://keelworks.org/about" style="color: #ffffff; text-decoration: none;">About Us</a></p>
+//                         <p style="margin: 0 0 8px;"><a href="https://keelworks.org/getinvolved" style="color: #ffffff; text-decoration: none;">Get Involved</a></p>
+//                         <p style="margin: 0 0 8px;"><a href="https://keelworks.org/oursolutions" style="color: #ffffff; text-decoration: none;">Our Solutions</a></p>
+//                         <p style="margin: 0 0 8px;"><a href="https://keelworks.org/blog" style="color: #ffffff; text-decoration: none;">Blog</a></p>
+//                         <p style="margin: 0 0 8px;"><a href="https://keelworks.org/success_stories" style="color: #ffffff; text-decoration: none;">Success Stories</a></p>
+//                       </nav>
+//                     </td>
+//                     <td class="mobile-footer-social" style="vertical-align: top; text-align: right;">
+//                       <p style="margin: 0 0 8px; font-size: 18px; font-family: 'Raleway', Arial, sans-serif;">Follow Us</p>
+//                       <p style="margin: 0;">
+//                        <a href="https://www.every.org/keelworks-foundation" aria-label="Donate via Every.org" style="margin-left:5px; text-decoration:none;">
+//                      <img src="https://drive.usercontent.google.com/download?id=1u0TULL1XwZIhwPC084TzQeYYUYhe3RJH&export=view&authuser=0" alt="Donate icon" width="24" height="24" role="img" style="display:inline-block; border:0;" />
+//                    </a>
+//                    <a href="https://www.linkedin.com/company/keelworks-foundation/" aria-label="Keelworks LinkedIn page" style="margin-left:5px; text-decoration:none;">
+//                      <img src="https://drive.usercontent.google.com/download?id=155v9Havzd39zHRdKE1UdjvDhCYP7ODoZ&export=view&authuser=0" alt="LinkedIn icon" width="24" height="24" role="img" style="display:inline-block; border:0; filter:brightness(0) invert(1);" />
+//                    </a>
+//                    <a href="https://www.facebook.com/TheKeelWorks" aria-label="Keelworks Facebook page" style="margin-left:5px; text-decoration:none;">
+//                      <img src="https://drive.usercontent.google.com/download?id=1vMJ0Z7MSf_CJUqrKOOH5Z5yYhWk45fiE&export=view&authuser=0" alt="Facebook icon" width="24" height="24" role="img" style="display:inline-block; border:0;" />
+//                    </a>
+//                    <a href="https://keelworks.org/contactus" aria-label="Keelworks YouTube channel" style="margin-left:5px; text-decoration:none;">
+//                      <img src="https://drive.usercontent.google.com/download?id=16RUVQYX21WQ3HW0WoxJ8BeaTzHSOXZdT&export=view&authuser=0" alt="YouTube icon" width="24" height="24" role="img" style="display:inline-block; border:0;" />
+//                    </a>
+//                    <a href="https://www.instagram.com/thekeelworks/" aria-label="Keelworks Instagram profile" style="margin-left:5px; text-decoration:none;">
+//                      <img src="https://drive.usercontent.google.com/download?id=1ihpPifzkBKZaMLXwftBE1WExhp9bV8vE&export=view&authuser=0" alt="Instagram icon" width="24" height="24" role="img" style="display:inline-block; border:0;" />
+//                    </a>
+//                         <!-- Add other social icons similarly -->
+//                       </p>
+//                     </td>
+//                   </tr>
+
+//                   <tr role="presentation">
+//                     <td align="center" style="padding:15px 0;">
+//                       <table
+//                         role="presentation"
+//                         border="0"
+//                         cellpadding="0"
+//                         cellspacing="0"
+//                         align="center"
+//                         style="margin: 0 auto;"
+//                       >
+//                         <tr>
+//                           <td style="padding:0 12px;">
+//                             <a
+//                               href="https://keelworks.org"
+//                               aria-label="Visit Keelworks website"
+//                               style="
+//                                 color:#fff;
+//                                 text-decoration:none;
+//                                 font-weight:600;
+//                               "
+//                             >
+//                               VISIT US
+//                             </a>
+//                           </td>
+//                           <td
+//                             style="
+//                               padding:0 12px;
+//                               color:#fff;
+//                               opacity:0.6;
+//                               font-size:24px;
+//                               line-height:1;
+//                             "
+//                           >
+//                             |
+//                           </td>
+//                           <td style="padding:0 12px;">
+//                             <a
+//                               href="#"
+//                               role="button"
+//                               aria-label="Unsubscribe from Keelworks newsletter"
+//                               style="
+//                                 color:#fff;
+//                                 text-decoration:none;
+//                                 font-weight:600;
+//                               "
+//                             >
+//                               To unsubscribe please email info@keelworks.org
+//                             </a>
+//                           </td>
+//                         </tr>
+//                       </table>
+//                     </td>
+//                   </tr>
+
+//                   <tr role="presentation">
+//                     <td align="center" style="padding:15px 0;">
+//                       <p style="margin:0; font-size:12px; color:#ffffff;">
+//                         © 2025 Keelworks. All rights reserved.
+//                       </p>
+//                     </td>
+//                   </tr>
+
+//                 </table>
+//               </td>
+//             </tr>
+
+//           </table>
+//         </td>
+//       </tr>
+//     </table>
+
+//   </body>
+// </html>
+// `;
+// }
 function renderParagraphs(str, color = "#000") {
   if (!str) return "";
   return str
-    .split(/\n\s*\n/) // Split by blank lines (paragraphs)
+    .split(/\n\s*\n/) // Split by blank lines into paragraphs
     .map(
-      (para) =>
-        `<p style="margin: 0 0 10px 0; line-height:1.4;text-justify: inter-word;hyphens: auto;text-align-last: left; color:${color}; font-family:'Lato', Arial, sans-serif;">
-          ${para.replace(/\n/g, "<br>")}
-        </p>`
+      (para) => `
+      <p style="
+        margin: 0 0 10px 0;
+        line-height: 1.4;
+        text-align: left;
+        color: ${color};
+        font-family: 'Lato', Arial, sans-serif;
+        font-size: 16px;
+      ">
+        ${para.replace(/\n/g, "<br>")}
+      </p>
+    `
     )
     .join("");
 }
@@ -15,7 +611,6 @@ export function getEmailHtml({
   month,
   year,
   founderMessage,
-  // founderPhotoUrl,
   quote,
   productTitle,
   productDescription,
@@ -36,630 +631,550 @@ export function getEmailHtml({
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Newsletter Template</title>
+    <title>Monthly Newsletter</title>
+    <!-- Web fonts may not load in all email clients; still included for clients that do -->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500,600&display=swap" rel="stylesheet" />
     <style>
-      body, table, td, th, p, a, span, div, h1, h2, h3, h4, h5, h6 {
-        font-family: 'Lato', Arial, sans-serif !important;
+      /* Media queries for responsive design */
+      @media only screen and (max-width: 600px) {
+        .container {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+        .mobile-padding {
+          padding: 10px !important;
+        }
+        .mobile-text {
+          font-size: 14px !important;
+        }
+        .mobile-title {
+          font-size: 24px !important;
+        }
+        .mobile-header {
+          font-size: 28px !important;
+        }
+        .mobile-image {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 0 15px 0 !important;
+          float: none !important;
+          display: block !important;
+        }
+        .mobile-center {
+          text-align: center !important;
+        }
+        .mobile-button {
+          display: block !important;
+          width: 80% !important;
+          padding: 15px 20px !important;
+          font-size: 18px !important;
+        }
+        .mobile-footer-links {
+          display: block !important;
+          text-align: center !important;
+          padding-right: 0 !important;
+          padding-bottom: 20px !important;
+          width: 100% !important;
+        }
+        .mobile-footer-social {
+          display: block !important;
+          text-align: center !important;
+          padding-top: 0 !important;
+          width: 100% !important;
+        }
+        .mobile-footer-row {
+          display: block !important;
+          width: 100% !important;
+        }
+        .mobile-unsubscribe-text {
+          font-size: 12px !important;
+          line-height: 1.4 !important;
+        }
       }
-      :root {
-        color: #000;
+      
+      @media only screen and (max-width: 480px) {
+        .mobile-header {
+          font-size: 24px !important;
+        }
+        .mobile-title {
+          font-size: 20px !important;
+        }
+        .mobile-text {
+          font-size: 13px !important;
+        }
       }
     </style>
   </head>
-  <body style="margin:0; padding:0; font-family: 'Lato', Arial, sans-serif; color:#000; background-color:#dcebf7;">
-    <!-- Outer Wrapper Table -->
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#dcebf7;">
+  <body style="
+      margin: 0;
+      padding: 0;
+      background-color: #dcebf7;
+      -webkit-text-size-adjust: 100%;
+    "
+  >
+
+    <!-- Wrapper to center everything -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0; padding: 20px 10px;">
       <tr>
-        <td align="center" style="padding:0px;">
-          <table width="800" cellpadding="0" cellspacing="0" border="0" style="background-color: #bcf2fc; margin:0 auto;">
-            <!-- Header -->
+        <td align="center">
+
+          <!-- Container -->
+          <table role="presentation" width="800" cellpadding="0" cellspacing="0" border="0" class="container" style="
+              width: 100% !important;
+              max-width: 800px;
+              margin: 0 auto;
+              background: #bcf2fc;
+              border-collapse: collapse;
+            "
+          >
+            <!-- Header Title -->
             <tr>
-              <td align="center" style="padding: 20px;">
-                <h1
-                  style="
+              <td align="center" class="mobile-padding" style="padding: 20px;">
+                <h1 class="mobile-header" style="
                     margin: 0;
-                    font-size: 54px;
-                    line-height: 0px;
-                    font-weight: bold;
+                    font-family: 'Raleway', Arial, sans-serif;
+                    font-size: 34px;
+                    font-weight: 600;
+                    line-height: 1.2;
                     color: #0a154f;
-                    letter-spacing: 1px;
-                    font-family: 'Lato', Arial, sans-serif;
-                    text-transform: uppercase;
-                    letter-spacing: 2.4px;
-                    padding-top: 10px;
                   "
                 >
                   Monthly Newsletter
                 </h1>
               </td>
             </tr>
-            <!-- logo + title row -->
+
+            <!-- Logo -->
             <tr>
-              <td align="center" style="padding: 0px;">
-                <table
-                  width="100%"
-                  cellpadding="0"
-                  cellspacing="0"
-                  border="0"
+              <td align="center" class="mobile-padding" style="padding: 0 20px 20px;">
+                <img
+                  src="https://keelworks.org/assets/keelworks_logo-CAApWs9G.jpg"
+                  alt="Keelworks Foundation logo"
+                  role="img"
+                  width="720"
+                  style="
+                    display: block;
+                    width: 100%;
+                    max-width: 720px;
+                    height: auto;
+                    border: 0;
+                  "
+                />
+              </td>
+            </tr>
+
+            <!-- Main Content Wrapper -->
+            <tr>
+              <td style="
+                  background: #538699
+                  padding: 20px;
+                "
+                class="mobile-padding"
+              >
+
+                <!-- Quote Section -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                    background: #0c1769c7;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                    box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+                  "
                 >
                   <tr>
-                    <!-- text cell -->
-                    <td style="vertical-align: middle; padding: 0 20px;">
-                      <img
-                        src="https://drive.usercontent.google.com/download?id=1kE6NfovyUI9XuUsxKD9xzQlV0clDGzpM&export=view&authuser=0"
-                        alt="Keelworks Logo"
-                        width="720"
-                        style="display: block; border: 0; height: auto;"
-                      />
+                    <td class="mobile-padding" style="padding: 40px 20px;">
+                      <h2 class="mobile-title" style="
+                          margin: 0;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 28px;
+                          font-weight: 500;
+                          line-height: 1.2;
+                          color: #ffffff;
+                        "
+                      >
+                        ${quote}
+                      </h2>
                     </td>
                   </tr>
                 </table>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
 
-    <!-- Container -->
-    <table width="800" cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(to bottom, #dcebf7 0%, #6a9bbd 100%); margin:0 auto; padding:20px;">
-      <!-- Main Content -->
-      <tr>
-        <td>
-          <!-- Quote / About Section -->
-          <table width="95%" cellpadding="0" cellspacing="0" border="0" style="margin:20px auto;background: linear-gradient(
-                            to bottom,
-                            #3f5689 0%,
-                            #1b2e59 100%
-                          ); color:#ffffff; border-radius:8px; box-shadow: 0 0 0 1px rgba(71, 71, 71, 0.1);">
-            <tr>
-              <td style="position:relative; padding:40px 20px;">
-                <p style="margin:0 0 0 0; font-family:'Lato', Arial, sans-serif; font-size: 18px; line-height: 1.4;">${quote}</p>
-              </td>
-            </tr>
-          </table>
-
-          <!-- Founder’s Message Section -->
-          <table
-            width="95%"
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="
-              margin: 20px auto;
-              background-color: #e3ecf3;
-              border-radius: 8px;
-              box-shadow: 0 0 0 1px rgba(71, 71, 71, 0.1);
-            "
-          >
-            <!-- Heading row -->
-            <tr>
-              <td style="padding: 20px 20px 0;">
-                <h2
-                  style="
-                    margin: 0;
-                    font-size: 24px;
-                    color: #1a1a1a;
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  Founder’s Message for ${month} ${year}
-                </h2>
-              </td>
-            </tr>
-            <!-- Content row -->
-            <tr>
-              <td
-                style="
-                  padding: 10px 20px 20px;
-                  color: #333333;
-                  font-family: 'Lato', Arial, sans-serif;
-                  line-height: 1.4;
-                  text-align: left;
-                "
-              >
-                <img
-                  src="https://keelworks.org/assets/Thomas-G-DHSeUrwJ.jpg"
-                  alt="Founder Portrait"
-                  align="right"
-                  style="
-                    float: right;
-                    width: 200px;
-                    max-width: 100%;
-                    margin: 0 0 20px 20px;
+                <!-- Founder's Message -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                    background: #869ba9;
                     border-radius: 8px;
-                    display: block;
-                  "
-                />
-                ${renderParagraphs(founderMessage, "#000")}
-
-              </td>
-            </tr>
-          </table>
-
-          <!-- Donate section -->
-          <table
-            width="95%"
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="
-              margin: 20px auto;
-              padding: 10px;
-              background-color: #5a8fb0;
-              color: #333;
-              border-radius: 8px;
-            "
-          >
-            <tr>
-              <td align="center" valign="middle" style="padding: 20px">
-                <h2
-                  style="
-                    margin: 0;
-                    line-height: 0.1;
-                    color: #1a1a1a;
-                    font-size: 24px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    font-family: 'Lato', Arial, sans-serif;
+                    margin: 20px 0;
+                    box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
                   "
                 >
-                  Your support makes a difference
-                </h2>
-              </td>
-            </tr>
-            <tr>
-              <td align="center" valign="middle" style="padding: 0 20px 20px">
-                <p
-                  style="
-                    margin: 0;
-                    font-size: 12px;
-                    font-weight: 400;
-                    line-height: 1.4;
-                    color: #333333;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  The work we do wouldn't be possible without the
-                  generosity of our supporters.
-                </p>
-              </td>
-            </tr>
-            <tr>
-              <td align="center" valign="middle" style="padding: 0 20px 20px">
-                <a
-                        href="https://www.every.org/keelworks-foundation?utm_campaign=donate-link&method=card%2Cbank%2Cpaypal%2Cpay%2Cvenmo%2Cgift%2Cstocks%2Cdaf#/donate/card"
-                        style="
-                          display: inline-block;
-                          padding: 12px 24px 18px 24px; /* extra bottom padding for text */
-                          background: linear-gradient(
-                            to bottom,
-                            #001d5e 0%,
-                            #263d78 100%
-                          );
+                  <tr>
+                    <td class="mobile-padding" style="padding: 20px;">
+                      <h2 class="mobile-title" style="
+                          margin: 0 0 10px;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 28px;
+                          font-weight: 500;
                           color: #ffffff;
-                          text-decoration: none;
-                          font-weight: 600;
-                          border-radius: 25px;
-                          font-size: 20px;
-                          white-space: nowrap;
-                          letter-spacing: 1px;
-                          text-align: center;
                           line-height: 1.2;
                         "
                       >
-                        <span style="display:block;">DONATE NOW</span>
-                        <span style="display:block; font-size: 10px; font-weight: 400; color: #c5cfff; margin-top: 2px;">
-                          Help transorm lives today!
-                        </span>
-                      </a>
-              </td>
-            </tr>
-          </table>
-
-          
-
-          <!-- Product Section -->
-          <table
-            width="95%"
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="
-              margin: 20px auto;
-              background: linear-gradient(to bottom, #a4c6dd 0%, #507da3 100%);
-              border-radius: 8px;
-              padding: 20px;
-              box-shadow: 0 0 0 1px rgba(71, 71, 71, 0.1);
-            "
-          >
-            <tr>
-              <td style="padding: 20px">
-                <h2
-                  style="
-                    color: #fff;
-                    margin: 0;
-                    font-size: 24px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  ${productTitle}
-                </h2>
-                ${renderParagraphs(productDescription, "#fff")}
-              </td>
-            </tr>
-          </table>
-
-          <!-- Team Section -->
-          <table
-            width="95%"
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="
-              margin: 20px auto;
-              background: #3a5a70;
-              border-radius: 8px;
-              padding: 20px;
-              box-shadow: 0 0 0 1px rgba(71, 71, 71, 0.1);
-            "
-          >
-            <tr>
-              <td style="padding: 20px">
-                <h2
-                  style="
-                    color: #fff;
-                    margin: 0;
-                    font-size: 24px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  ${teamName}
-                </h2>
-                <img
-                  src="https://drive.usercontent.google.com/download?id=${teamImageUrl}&export=view&authuser=0"
-                  alt="Team Portrait"
-                  style="
-                    display: block;
-                    margin: 10px auto;
-                    max-width: 80%;
-                    border-radius: 8px;
-                  "
-                />
-                ${renderParagraphs(teamHighlight, "#fff")}
-              </td>
-            </tr>
-          </table>
-
-          <!-- Volunteer/Associate Section -->
-          <table
-            width="95%"
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="
-              margin: 20px auto;
-              background: #4a6a83;
-              border-radius: 8px;
-              box-shadow: 0 0 0 1px rgba(71, 71, 71, 0.1);
-            "
-          >
-            <tr>
-              <td style="padding-top: 20px; padding-left: 20px">
-                <h2
-                  style="
-                    color: #fff;
-                    margin: 0;
-                    font-size: 24px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  Associate of the Month
-                </h2>
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="
-                  padding: 20px;
-                  text-align: left;
-                  color: #fff;
-                  font-family: 'Lato', Arial, sans-serif;
-                "
-              >
-                <img
-                  src="https://drive.usercontent.google.com/download?id=${volunteerImageUrl}&export=view&authuser=0"
-                  alt="Volunteer Image"
-                  align="left"
-                  style="
-                    float: left;
-                    width: 200px;
-                    max-width: 100%;
-                    margin: 0 20px 0px 0;
-                    border-radius: 8px;
-                    display: block;
-                  "
-                />
-                <h2
-                  style="
-                    margin-top: 0;
-                    margin-bottom: 8px;
-                    font-size: 20px;
-                    line-height: 1.2;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  ${volunteerName}
-                </h2>
-                ${renderParagraphs(volunteerBio, "#fff")}
-                <span style="font-size: 20px;font-weight: 600; margin-top: 5px;font-family:'Lato', Arial, sans-serif;color:#fff;">Why ${volunteerName}?</span>
-                ${renderParagraphs(whyVolunteer, "#fff")}
-              </td>
-            </tr>
-          </table>
-          <!-- Diversity Section -->
-          <table
-            width="95%"
-            cellpadding="0"
-            cellspacing="0"
-            border="0"
-            style="
-              margin: 20px auto;
-              background: #4a6a83;
-              border-radius: 8px;
-              box-shadow: 0 0 0 1px rgba(71, 71, 71, 0.1);
-            "
-          >
-            <tr>
-              <td style="padding-top: 20px; padding-left: 20px">
-                <h2
-                  style="
-                    color: #fff;
-                    margin: 0;
-                    font-size: 24px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  Diversity At Keelworks
-                </h2>
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="
-                  padding: 20px;
-                  text-align: left;
-                  color: #fff;
-                  font-family: 'Lato', Arial, sans-serif;
-                "
-              >
-                <img
-                  src="https://drive.usercontent.google.com/download?id=${associateImageUrl}&export=view&authuser=0"
-                  alt="Volunteer Image"
-                  align="left"
-                  style="
-                    float: left;
-                    width: 200px;
-                    max-width: 100%;
-                    margin: 0 20px 0px 0;
-                    border-radius: 8px;
-                    display: block;
-                  "
-                />
-                <h2
-                  style="
-                    margin-top: 0;
-                    margin-bottom: 8px;
-                    font-size: 20px;
-                    line-height: 1.2;
-                    font-family: 'Lato', Arial, sans-serif;
-                  "
-                >
-                  ${associateName}
-                </h2>
-                ${renderParagraphs(diversityDetails, "#fff")}
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-
-    <!-- End Container -->
-    <table width="800" cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(to bottom, #dcebf7 0%, #6a9bbd 100%); margin:0 auto;">
-      <!-- Footer -->
-      <tr>
-        <td>
-          <table width="800" cellpadding="0" cellspacing="0" border="0" id="footer" style="background-color:#1f2e3d; color:#ffffff; margin:0 auto; padding:20px; font-family: 'Lato', Arial, sans-serif;">
-            <!-- Footer Top -->
-            <tr>
-              <td style="border-top: 1px solid rgba(255,255,255,0.3); border-bottom: 1px solid rgba(255,255,255,0.3); padding:15px 15px;">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                    <!-- Footer Links -->
-                    <td style="width:50%; vertical-align:top;">
-                      <a href="https://keelworks.org/about" style="display:block; margin-bottom:5px; text-decoration:none; color:#ffffff; font-weight:500; font-size:0.95rem; font-family: 'Lato', Arial, sans-serif;">About Us</a>
-                      <a href="https://keelworks.org/getinvolved" style="display:block; margin-bottom:5px; text-decoration:none; color:#ffffff; font-weight:500; font-size:0.95rem; font-family: 'Lato', Arial, sans-serif;">Get Involved</a>
-                      <a href="https://keelworks.org/oursolutions" style="display:block; margin-bottom:5px; text-decoration:none; color:#ffffff; font-weight:500; font-size:0.95rem; font-family: 'Lato', Arial, sans-serif;">Our Solutions</a>
-                      <a href="https://keelworks.org/blog" style="display:block; margin-bottom:5px; text-decoration:none; color:#ffffff; font-weight:500; font-size:0.95rem; font-family: 'Lato', Arial, sans-serif;">Blog</a>
-                      <a href="https://keelworks.org/success_stories" style="display:block; margin-bottom:5px; text-decoration:none; color:#ffffff; font-weight:500; font-size:0.95rem; font-family: 'Lato', Arial, sans-serif;">Success Stories</a>
-                      <a href="https://keelworks.org/getinvolved#faq" style="display:block; margin-bottom:5px; text-decoration:none; color:#ffffff; font-weight:500; font-size:0.95rem; font-family: 'Lato', Arial, sans-serif;">FAQ</a>
-                      <a href="https://keelworks.org/non_dis_policy" style="display:block; margin-bottom:5px; text-decoration:none; color:#ffffff; font-weight:500; font-size:0.95rem; font-family: 'Lato', Arial, sans-serif;">Non-discrimination Policy</a>
-                    </td>
-                    <td style="
-                      width:50%;
-                      vertical-align:top;
-                      text-align:right;
-                      padding-top:10px;
-                    ">
-                      <h3 style="margin:0 0 6px; font-size:1.1rem; color:#ffffff; font-family: 'Lato', Arial, sans-serif;">
-                        Support and Follow Us
-                      </h3>
-                      <div>
-                        <!-- Donate -->
-                        <a
-                          href="https://www.every.org/keelworks-foundation?utm_campaign=donate-link&method=card%2Cbank%2Cpaypal%2Cpay%2Cvenmo%2Cgift%2Cstocks%2Cdaf#/donate/card"
+                        Founder's Message for ${month} ${year}
+                      </h2>
+                      <div style="color: #ffffff;">
+                        <img
+                          src="https://keelworks.org/assets/Thomas-G-DHSeUrwJ.jpg"
+                          alt="Portrait of the Founder"
+                          role="img"
+                          align="right"
+                          class="mobile-image"
                           style="
-                            display: inline-block;
-                            margin-left: 5px;
-                            text-decoration: none;
+                            display: block;
+                            width: 200px;
+                            max-width: 100%;
+                            height: auto;
+                            margin: 0 0 20px 20px;
+                            border-radius: 8px;
                           "
-                        >
-                          <img
-                            src="https://drive.usercontent.google.com/download?id=1u0TULL1XwZIhwPC084TzQeYYUYhe3RJH&export=view&authuser=0"
-                            alt="Donate"
-                            width="24"
-                            height="24"
-                            style="
-                              display: inline-block;
-                              border: 0;
-                              outline: none;
-                            "
-                          />
-                        </a>
-                        <!-- LinkedIn -->
-                        <a
-                          href="https://www.linkedin.com/company/keelworks-foundation/"
-                          style="
-                            display: inline-block;
-                            margin-left: 5px;
-                            text-decoration: none;
-                          "
-                        >
-                          <img
-                            src="https://drive.usercontent.google.com/download?id=155v9Havzd39zHRdKE1UdjvDhCYP7ODoZ&export=view&authuser=0"
-                            alt="LinkedIn"
-                            width="24"
-                            height="24"
-                            style="
-                              display: inline-block;
-                              border: 0;
-                              outline: none;
-                              filter: brightness(0) invert(1);
-                            "
-                          />
-                        </a>
-                        <!-- Facebook -->
-                        <a
-                          href="https://www.facebook.com/TheKeelWorks"
-                          style="
-                            display: inline-block;
-                            margin-left: 5px;
-                            text-decoration: none;
-                          "
-                        >
-                          <img
-                            src="https://drive.usercontent.google.com/download?id=1vMJ0Z7MSf_CJUqrKOOH5Z5yYhWk45fiE&export=view&authuser=0"
-                            alt="Facebook"
-                            width="24"
-                            height="24"
-                            style="
-                              display: inline-block;
-                              border: 0;
-                              outline: none;
-                            "
-                          />
-                        </a>
-                        <!-- Youtube -->
-                        <a
-                          href="https://keelworks.org/contactus"
-                          style="
-                            display: inline-block;
-                            margin-left: 5px;
-                            text-decoration: none;
-                          "
-                        >
-                          <img
-                            src="https://drive.usercontent.google.com/download?id=16RUVQYX21WQ3HW0WoxJ8BeaTzHSOXZdT&export=view&authuser=0"
-                            alt="Youtube"
-                            width="24"
-                            height="24"
-                            style="
-                              display: inline-block;
-                              border: 0;
-                              outline: none;
-                            "
-                          />
-                        </a>
-                        <!-- Instagram -->
-                        <a
-                          href="https://www.instagram.com/thekeelworks/"
-                          style="
-                            display: inline-block;
-                            margin-left: 5px;
-                            text-decoration: none;
-                          "
-                        >
-                          <img
-                            src="https://drive.usercontent.google.com/download?id=1ihpPifzkBKZaMLXwftBE1WExhp9bV8vE&export=view&authuser=0"
-                            alt="Instagram"
-                            width="24"
-                            height="24"
-                            style="
-                              display: inline-block;
-                              border: 0;
-                              outline: none;
-                            "
-                          />
-                        </a>
+                        />
+                        ${renderParagraphs(founderMessage, "#ffffff")}
                       </div>
                     </td>
                   </tr>
                 </table>
-              </td>
-            </tr>
-            <!-- Footer Bottom -->
-            <tr>
-                    <td style="text-align: center; padding: 15px 0">
-                      <a
-                        href="https://keelworks.org"
-                        style="
-                          text-decoration: none;
+
+                <!-- Donate CTA -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                    background: #5d98ae;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                  "
+                >
+                  <tr>
+                    <td align="center" class="mobile-padding" style="padding: 20px;">
+                      <h2 class="mobile-title" style="
+                          margin: 0 0 10px;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 28px;
+                          font-weight: 500;
                           color: #ffffff;
-                          font-weight: 600;
-                          margin-right: 12px;
+                          line-height: 1.2;
                         "
                       >
-                        <span>VISIT US</span>
-                      </a>
-                      <span style="color: #ffffff; opacity: 0.6; font-weight: 400; margin: 0 12px;font-size: 24px;">|</span>
-                      <a
-                        href="#"
-                        style="
-                          text-decoration: none;
+                        Your support makes a difference
+                      </h2>
+                      <p class="mobile-text" style="
+                          margin: 0 0 20px;
+                          font-family: 'Lato', Arial, sans-serif;
+                          font-size: 16px;
+                          line-height: 1.4;
                           color: #ffffff;
-                          font-weight: 600;
-                          margin-left: 12px;
                         "
                       >
-                        <span>To unsubscribe please email to info@keelworks.org</span>
+                        The work we do wouldn't be possible without the generosity of our supporters.
+                      </p>
+                      <a
+                        href="https://www.every.org/keelworks-foundation?utm_campaign=donate-link"
+                        role="button"
+                        aria-label="Donate to Keelworks Foundation"
+                        class="mobile-button"
+                        style="
+                          display: inline-block;
+                          padding: 12px 36px;
+                          background: #060e3a;
+                          color: #ffffff !important;
+                          text-decoration: none !important;
+                          font-family: 'Lato', Arial, sans-serif;
+                          font-size: 20px;
+                          font-weight: 600;
+                          line-height: 1.2;
+                          border-radius: 25px;
+                          white-space: nowrap;
+                          text-align: center;
+                        "
+                      >
+                        Donate Now
                       </a>
                     </td>
                   </tr>
+                </table>
 
+                <!-- Diversity Section -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                    background: #5486b8;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                    box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+                  "
+                >
                   <tr>
-                    
-                    <td style="text-align: center; padding: 15px 0">
-                      <p style="display: inline; margin: 0; font-size: 12px;">
+                    <td class="mobile-padding mobile-center" style="padding: 20px; color: #ffffff;">
+                      <h2 class="mobile-title" style="
+                          margin: 0 0 10px;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 28px;
+                          font-weight: 500;
+                          line-height: 1.2;
+                        "
+                      >
+                        Diversity at Keelworks
+                      </h2>
+                      <img
+                        src="https://drive.usercontent.google.com/download?id=${associateImageUrl}&export=view"
+                        alt="Photo of ${associateName}"
+                        role="img"
+                        class="mobile-image"
+                        style="
+                          display: block;
+                          float: left;
+                          width: 200px;
+                          max-width: 100%;
+                          height: auto;
+                          margin: 0 20px 20px 0;
+                          border-radius: 8px;
+                        "
+                      />
+                      <h3 class="mobile-title" style="
+                          margin: 0 0 10px;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 24px;
+                          font-weight: 500;
+                          line-height: 1.2;
+                        "
+                      >
+                        ${associateName}
+                      </h3>
+                      ${renderParagraphs(diversityDetails, "#ffffff")}
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Product Section -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                    background: #253c52;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                    box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+                  "
+                >
+                  <tr>
+                    <td class="mobile-padding" style="color: #ffffff;padding: 20px;">
+                      <h2 class="mobile-title" style="
+                          margin: 0 0 10px;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 28px;
+                          font-weight: 500;
+                          line-height: 1.2;
+                        "
+                      >
+                        ${productTitle}
+                      </h2>
+                      ${renderParagraphs(productDescription, "#ffffff")}
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Team Section -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                    background: #0a1d2f;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                    box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+                  "
+                >
+                  <tr>
+                    <td class="mobile-padding" style="color: #ffffff; padding: 20px;">
+                      <h2 class="mobile-title" style="
+                          margin: 0 0 10px;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 28px;
+                          font-weight: 500;
+                          line-height: 1.2;
+                        "
+                      >
+                        ${teamName}
+                      </h2>
+                      <img
+                        src="https://drive.usercontent.google.com/download?id=${teamImageUrl}&export=view"
+                        alt=""
+                        role="img"
+                        style="
+                          display: block;
+                          margin: 10px auto;
+                          width: 80%;
+                          max-width: 80%;
+                          height: auto;
+                          border-radius: 8px;
+                        "
+                      />
+                      ${renderParagraphs(teamHighlight, "#ffffff")}
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Volunteer Spotlight -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
+                    background: #5486b8;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                    box-shadow: 0 0 0 1px rgba(71,71,71,0.1);
+                  "
+                >
+                  <tr>
+                    <td class="mobile-padding mobile-center" style="padding: 20px; color: #ffffff;">
+                      <h2 class="mobile-title" style="
+                          margin: 0 0 10px;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 28px;
+                          font-weight: 500;
+                          line-height: 1.2;
+                        "
+                      >
+                        Associate of the Month
+                      </h2>
+                      <img
+                        src="https://drive.usercontent.google.com/download?id=${volunteerImageUrl}&export=view"
+                        alt="Photo of ${volunteerName}"
+                        role="img"
+                        class="mobile-image"
+                        style="
+                          display: block;
+                          float: left;
+                          width: 200px;
+                          max-width: 100%;
+                          height: auto;
+                          margin: 0 20px 20px 0;
+                          border-radius: 8px;
+                        "
+                      />
+                      <h3 class="mobile-title" style="
+                          margin: 0 0 10px;
+                          font-family: 'Raleway', Arial, sans-serif;
+                          font-size: 24px;
+                          font-weight: 500;
+                          line-height: 1.2;
+                        "
+                      >
+                        ${volunteerName}
+                      </h3>
+                      ${renderParagraphs(volunteerBio, "#ffffff")}
+                      <strong class="mobile-text" style="
+                          display: block;
+                          margin: 10px 0 5px;
+                          font-family: 'Lato', Arial, sans-serif;
+                          font-size: 20px;
+                          color: #ffffff;
+                        "
+                      >
+                        Why ${volunteerName}?
+                      </strong>
+                      ${renderParagraphs(whyVolunteer, "#ffffff")}
+                    </td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr ">
+              <td class="mobile-padding" style="background-color: #1f2e3d; padding: 20px; color: #ffffff;">
+                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 0 0 20px 0;" />
+                <!-- Footer Links and Social - Stacked on mobile -->
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr class="mobile-footer-row">
+                    <td class="mobile-footer-links" style="vertical-align: top; padding-right: 20px; width: 50%;">
+                      <nav aria-label="Footer links">
+                        <p style="margin: 0 0 8px;"><a href="https://keelworks.org/about" style="color: #ffffff; text-decoration: none;">About Us</a></p>
+                        <p style="margin: 0 0 8px;"><a href="https://keelworks.org/getinvolved" style="color: #ffffff; text-decoration: none;">Get Involved</a></p>
+                        <p style="margin: 0 0 8px;"><a href="https://keelworks.org/oursolutions" style="color: #ffffff; text-decoration: none;">Our Solutions</a></p>
+                        <p style="margin: 0 0 8px;"><a href="https://keelworks.org/blog" style="color: #ffffff; text-decoration: none;">Blog</a></p>
+                        <p style="margin: 0 0 8px;"><a href="https://keelworks.org/success_stories" style="color: #ffffff; text-decoration: none;">Success Stories</a></p>
+                      </nav>
+                    </td>
+                    <td class="mobile-footer-social" style="vertical-align: top; text-align: right; width: 50%;">
+                      <p style="margin: 0 0 8px; font-size: 18px; font-family: 'Raleway', Arial, sans-serif;">Follow Us</p>
+                      <p style="margin: 0;">
+                       <a href="https://www.every.org/keelworks-foundation" aria-label="Donate via Every.org" style="margin: 0 5px; text-decoration:none; display: inline-block;">
+                     <img src="https://drive.usercontent.google.com/download?id=1u0TULL1XwZIhwPC084TzQeYYUYhe3RJH&export=view&authuser=0" alt="Donate icon" width="24" height="24" role="img" style="display:inline-block; border:0;" />
+                   </a>
+                   <a href="https://www.linkedin.com/company/keelworks-foundation/" aria-label="Keelworks LinkedIn page" style="margin: 0 5px; text-decoration:none; display: inline-block;">
+                     <img src="https://drive.usercontent.google.com/download?id=155v9Havzd39zHRdKE1UdjvDhCYP7ODoZ&export=view&authuser=0" alt="LinkedIn icon" width="24" height="24" role="img" style="display:inline-block; border:0; filter:brightness(0) invert(1);" />
+                   </a>
+                   <a href="https://www.facebook.com/TheKeelWorks" aria-label="Keelworks Facebook page" style="margin: 0 5px; text-decoration:none; display: inline-block;">
+                     <img src="https://drive.usercontent.google.com/download?id=1vMJ0Z7MSf_CJUqrKOOH5Z5yYhWk45fiE&export=view&authuser=0" alt="Facebook icon" width="24" height="24" role="img" style="display:inline-block; border:0;" />
+                   </a>
+                   <a href="https://keelworks.org/contactus" aria-label="Keelworks YouTube channel" style="margin: 0 5px; text-decoration:none; display: inline-block;">
+                     <img src="https://drive.usercontent.google.com/download?id=16RUVQYX21WQ3HW0WoxJ8BeaTzHSOXZdT&export=view&authuser=0" alt="YouTube icon" width="24" height="24" role="img" style="display:inline-block; border:0;" />
+                   </a>
+                   <a href="https://www.instagram.com/thekeelworks/" aria-label="Keelworks Instagram profile" style="margin: 0 5px; text-decoration:none; display: inline-block;">
+                     <img src="https://drive.usercontent.google.com/download?id=1ihpPifzkBKZaMLXwftBE1WExhp9bV8vE&export=view&authuser=0" alt="Instagram icon" width="24" height="24" role="img" style="display:inline-block; border:0;" />
+                   </a>
+                      </p>
+                    </td>
+                  </tr>
+                 </table>
+
+                <!-- Visit Us / Unsubscribe Row -->
+
+                  <tr role="presentation">
+                    <td align="center" style="padding:15px 0;background-color: #1f2e3d">
+                      <table
+                        role="presentation"
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        align="center"
+                        style="margin: 0 auto; width: 100%;"
+                      >
+                        <tr>
+                          <td align="center" style="padding:5px;">
+                            <a
+                              href="https://keelworks.org"
+                              aria-label="Visit Keelworks website"
+                              style="
+                                color:#fff;
+                                text-decoration:none;
+                                font-weight:600;
+                                display: inline-block;
+                              "
+                            >
+                              VISIT US
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center" style="padding:5px;">
+                            <span class="mobile-unsubscribe-text" style="
+                              color:#fff;
+                              text-decoration:none;
+                              font-weight:600;
+                              font-size: 14px;
+                              line-height: 1.2;
+                            ">
+                              To unsubscribe please email info@keelworks.org
+                            </span>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr role="presentation">
+                    <td align="center" style="padding:15px 0;background-color: #1f2e3d">
+                      <p style="margin:0; font-size:12px; color:#ffffff;">
                         © 2025 Keelworks. All rights reserved.
                       </p>
                     </td>
                   </tr>
+
+                </table>
+              </td>
+            </tr>
+
           </table>
         </td>
       </tr>
     </table>
+
   </body>
 </html>
 `;
