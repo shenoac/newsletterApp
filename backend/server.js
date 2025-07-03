@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const draftRouter = require("./routes/drafts");
+const analyticsRouter = require("./routes/analytics");
 // const authRouter = require("./routes/auth");
 const {
   router: authRouter,
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/api", authRouter);
 app.use("/api/drafts", authMiddleware, draftRouter);
+app.use("/api/analytics", analyticsRouter);
 
 const mongoUri = process.env.MONGO_URI || "mongodb://mongo:27017/newsletter";
 mongoose

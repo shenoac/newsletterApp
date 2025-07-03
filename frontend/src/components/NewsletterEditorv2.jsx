@@ -181,6 +181,7 @@ export default function NewsletterEditorv2({ draftKey }) {
     associateName,
     diversityDetails,
     associateImageUrl,
+    key: draftKey,
   });
 
   const websiteHtml = getreactComponent({

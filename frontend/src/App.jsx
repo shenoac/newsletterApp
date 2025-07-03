@@ -18,6 +18,7 @@ import Login from "./pages/Login";
 import RequireAuth from "./RequireAuth";
 import CreateUser from "./pages/CreateUser";
 import ChangePassword from "./pages/ChangePassword";
+import AnalyticsDashboard from "./pages/AnalyticsDashboard";
 
 export default function App() {
   return (
@@ -61,6 +62,14 @@ export default function App() {
             element={
               <RequireAuth>
                 <ChangePassword />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/analytics/:key"
+            element={
+              <RequireAuth>
+                <AnalyticsDashboard />
               </RequireAuth>
             }
           />

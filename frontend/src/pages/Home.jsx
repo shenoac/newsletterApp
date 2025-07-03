@@ -168,6 +168,14 @@ export default function Home() {
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
+                        <button
+                          className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                          onClick={() =>
+                            navigate(`/analytics/${encodeURIComponent(key)}`)
+                          }
+                        >
+                          Stats
+                        </button>
                       </div>
                     </div>
                   </div>

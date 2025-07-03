@@ -36,6 +36,7 @@ export function getEmailHtml({
   associateName,
   diversityDetails,
   associateImageUrl,
+  key,
 }) {
   return `
 <!DOCTYPE html>
@@ -586,6 +587,7 @@ export function getEmailHtml({
         </td>
       </tr>
     </table>
+    ${key ? `<img src="/api/analytics/open/${encodeURIComponent(key)}.png" alt="" width="1" height="1" style="display:none;"/>` : ""}
 
   </body>
 </html>
