@@ -48,6 +48,33 @@ export default function AnalyticsDashboard() {
       <h1 className="text-2xl font-bold mb-4">Analytics for {key}</h1>
       <p className="mb-2">Total Opens: {stats.openCount}</p>
       <p className="mb-4">Unique Viewers: {uniqueViewers}</p>
+
+      {stats.userStats && stats.userStats.length > 0 && (
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold mb-2">User Summary</h2>
+          <table className="text-sm border border-gray-200 mb-4 w-full">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="px-2 py-1 text-left">Email Client</th>
+                <th className="px-2 py-1 text-left">Device</th>
+                <th className="px-2 py-1 text-left">Opens</th>
+                <th className="px-2 py-1 text-left">Seconds</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stats.userStats.map((u, idx) => (
+                <tr key={idx} className="border-t border-gray-200">
+                  <td className="px-2 py-1">{u.emailClient || "-"}</td>
+                  <td className="px-2 py-1">{getDevice(u.userAgent)}</td>
+                  <td className="px-2 py-1">{u.totalOpens}</td>
+                  <td className="px-2 py-1">{u.totalSeconds}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       <h2 className="text-xl font-semibold mb-2">View Details</h2>
       <table className="mb-4 text-sm border border-gray-200">
         <thead>

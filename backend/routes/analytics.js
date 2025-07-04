@@ -96,10 +96,29 @@ router.get("/ping/:key.png", async (req, res) => {
 router.get("/stats/:key", async (req, res) => {
   const { key } = req.params;
   const doc = await Analytics.findOne({ key }).lean();
-  if (!doc) return res.json({ openCount: 0, opens: [] });
+  if (!doc) return res.json({ openCount: 0, opens: [], userStats: [] });
+
+  const opens = doc.opens || [];
+  const grouped = {};
+  for (const o of opens) {
+    const id = o.userAgent || "unknown";
+    if (!grouped[id]) {
+      grouped[id] = {
+        userAgent: o.userAgent,
+        emailClient: o.emailClient,
+        totalOpens: 0,
+        totalSeconds: 0,
+      };
+    }
+    grouped[id].totalOpens += 1;
+    if (typeof o.secondsSpend === "number") {
+      grouped[id].totalSeconds += o.secondsSpent;
+    }
+  }
   res.json({
     openCount: doc.openCount,
-    opens: doc.opens || [],
+    opens,
+    userStats: Object.values(grouped),
   });
 });
 
