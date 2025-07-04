@@ -6,4 +6,4 @@ const analyticsSchema = new mongoose.Schema({
   opens: [{ time: { type: Date, default: Date.now }, userAgent: String }],
 });
 
-module.exports = mongoose.model("Analytics, analyticsSchema");
+module.exports = mongoose.model("Analytics", analyticsSchema);
