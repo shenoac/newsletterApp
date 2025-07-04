@@ -20,7 +20,7 @@ function parseClient(ua = "") {
 
 router.get("/open/:key.png", async (req, res) => {
   const { key } = req.params;
-  const userAgent = req.headers["user-agent"] || "unknown";
+  const userAgent = req.get("User-Agent") || "unknown";
   const clientTime = req.query.clientTime
     ? new Date(req.query.clientTime)
     : undefined;
@@ -40,12 +40,14 @@ router.get("/open/:key.png", async (req, res) => {
     { upsert: true }
   );
   res.set("Content-Type", "image/gif");
+  res.set("Cache-Control", "no-cache, no-store, must-revalidate");
   res.send(pixelBuffer);
 });
 
 router.post("/time/:key", async (req, res) => {
   const { key } = req.params;
-  const { secondsSpent, clientTime } = req.body || "unknown";
+  const { secondsSpent, clientTime } = req.body || {};
+  const userAgent = req.headers["user-agent"] || "unknown";
   await Analytics.findOneAndUpdate(
     { key },
     {
@@ -56,12 +58,39 @@ router.post("/time/:key", async (req, res) => {
           emailClient: parseClient(userAgent),
           clientTime: clientTime ? new Date(clientTime) : undefined,
           secondsSpent: Number(secondsSpent) || 0,
+          isPing: false,
         },
       },
     },
     { upsert: true }
   );
   res.sendStatus(204);
+});
+
+router.get("/ping/:key.png", async (req, res) => {
+  const { key } = req.params;
+  const userAgent = req.headers["user-agent"] || "unknown";
+  const clientTime = req.query.clientTime
+    ? newDate(req.query.clientTime)
+    : undefined;
+  await Analytics.findOneAndUpdated(
+    { key },
+    {
+      $push: {
+        opens: {
+          time: new Date(),
+          userAgent,
+          emailClient: parseClient(userAgent),
+          clientTime,
+          isPing: true,
+        },
+      },
+    },
+    { upsert: true }
+  );
+  res.set("Content-Type", "image/gif");
+  res.set("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.send(pixelBuffer);
 });
 
 router.get("/stats/:key", async (req, res) => {

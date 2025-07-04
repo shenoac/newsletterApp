@@ -10,6 +10,7 @@ const analyticsSchema = new mongoose.Schema({
       emailClient: String,
       clientTime: Date,
       secondsSpent: Number,
+      isPing: Boolean,
     },
   ],
 });

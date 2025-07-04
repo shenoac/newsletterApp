@@ -587,8 +587,41 @@ export function getEmailHtml({
         </td>
       </tr>
     </table>
-    ${key ? `<script>(function(){var start=Date.now();function send(){var s=Math.round((Date.now()-start)/1000);navigator.sendBeacon('/api/analytics/time/${encodeURIComponent(key)}',JSON.stringify({secondsSpent:s,clientTime:new Date().toISOString()}));}window.addEventListener('beforeunload',send);})();</script>` : ""}
-  </body>
+    ${
+      key
+        ? (() => {
+            const now = new Date().toISOString();
+            const frames = Array.from({ length: 30 })
+              .map((_, i) => {
+                const pct = (((i + 1) / 30) * 100).toFixed(2);
+                return `${pct}% { background-image: url('/api/analytics/ping/${encodeURIComponent(
+                  key
+                )}.png?f=${i}'); }`;
+              })
+              .join("");
+            return `
+      <style>
+        @keyframes ping-${key} {
+          ${frames}
+        }
+        .tracking-pixel {
+          width:1px;
+          height:1px;
+          opacity:0;
+          display:block;
+          background-image:url('http://localhost:4000/api/analytics/ping/${encodeURIComponent(key)}.png?start');
+          animation: ping-${key} 30s steps(30,end) infinite;
+        }
+      </style>
+      <img src="/api/analytics/open/${encodeURIComponent(
+        key
+      )}.png?clientTime=${encodeURIComponent(now)}" width="1" height="1" style="display:block;opacity:0" alt="" />
+      <div class="tracking-pixel"></div>
+      `;
+          })()
+        : ""
+    }
+    </body>
 </html>
 `;
 }

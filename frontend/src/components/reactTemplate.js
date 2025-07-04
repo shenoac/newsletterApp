@@ -43,7 +43,7 @@ export default function NewsletterTemplate() {
   }
 
   useEffect(() => {
-      const img = newImage();
+      const img = new Image();
       img.src = '/api/analytics/open/${encodeURIComponent(key)}.png?clientTime=' +
       encodeURIComponent(new Date().toISOString());
       const start = Date.now();
