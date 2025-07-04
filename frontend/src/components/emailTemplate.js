@@ -594,7 +594,7 @@ export function getEmailHtml({
             const frames = Array.from({ length: 30 })
               .map((_, i) => {
                 const pct = (((i + 1) / 30) * 100).toFixed(2);
-                return `${pct}% { background-image: url('/api/analytics/ping/${encodeURIComponent(
+                return `${pct}% { background-image: url('http://localhost:4000/api/analytics/ping/${encodeURIComponent(
                   key
                 )}.png?f=${i}'); }`;
               })

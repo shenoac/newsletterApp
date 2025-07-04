@@ -71,9 +71,9 @@ router.get("/ping/:key.png", async (req, res) => {
   const { key } = req.params;
   const userAgent = req.headers["user-agent"] || "unknown";
   const clientTime = req.query.clientTime
-    ? newDate(req.query.clientTime)
+    ? new Date(req.query.clientTime)
     : undefined;
-  await Analytics.findOneAndUpdated(
+  await Analytics.findOneAndUpdate(
     { key },
     {
       $push: {
