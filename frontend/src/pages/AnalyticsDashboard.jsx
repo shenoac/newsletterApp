@@ -52,15 +52,23 @@ export default function AnalyticsDashboard() {
       <table className="mb-4 text-sm border border-gray-200">
         <thead>
           <tr className="bg-gray-100">
-            <th className="px-2 py-1 text-left">Time</th>
+            <th className="px-2 py-1 text-left">Server Time</th>
+            <th className="px-2 py-1 text-left">Device Time</th>
+            <th className="px-2 py-1 text-left">Email Client</th>
             <th className="px-2 py-1 text-left">Device</th>
+            <th className="px-2 py-1 text-left">Seconds</th>
           </tr>
         </thead>
         <tbody>
           {(stats.opens || []).map((o, idx) => (
             <tr key={idx} className="border-t border-gray-200">
               <td className="px-2 py-1">{new Date(o.time).toLocaleString()}</td>
+              <td className="px-2 py-1">
+                {o.clientTime ? new Date(o.clientTime).toLocaleString() : "-"}
+              </td>
+              <td className="px-2 py-1">{o.emailClient || "-"}</td>
               <td className="px-2 py-1">{getDevice(o.userAgent)}</td>
+              <td className="px-2 py-1">{o.secondsSpent ?? "-"}</td>
             </tr>
           ))}
         </tbody>

@@ -9,19 +9,59 @@ const pixelBuffer = Buffer.from(
   "base64"
 );
 
+function parseClient(ua = "") {
+  const lower = ua.toLowerCase();
+  if (lower.includes("gmail")) return "Gmail";
+  if (lower.includes("outlook")) return "Outlook";
+  if (lower.includes("apple")) return "Apple Mail";
+  if (lower.includes("yahoo")) return "Yahoo Mail";
+  return "Unknown";
+}
+
 router.get("/open/:key.png", async (req, res) => {
   const { key } = req.params;
   const userAgent = req.headers["user-agent"] || "unknown";
+  const clientTime = req.query.clientTime
+    ? new Date(req.query.clientTime)
+    : undefined;
   await Analytics.findOneAndUpdate(
     { key },
     {
       $inc: { openCount: 1 },
-      $push: { opens: { time: new Date(), userAgent } },
+      $push: {
+        opens: {
+          time: new Date(),
+          userAgent,
+          emailClient: parseClient(userAgent),
+          clientTime,
+        },
+      },
     },
     { upsert: true }
   );
   res.set("Content-Type", "image/gif");
   res.send(pixelBuffer);
+});
+
+router.post("/time/:key", async (req, res) => {
+  const { key } = req.params;
+  const { secondsSpent, clientTime } = req.body || "unknown";
+  await Analytics.findOneAndUpdate(
+    { key },
+    {
+      $push: {
+        opens: {
+          time: new Date(),
+          userAgent,
+          emailClient: parseClient(userAgent),
+          clientTime: clientTime ? new Date(clientTime) : undefined,
+          secondsSpent: Number(secondsSpent) || 0,
+        },
+      },
+    },
+    { upsert: true }
+  );
+  res.sendStatus(204);
 });
 
 router.get("/stats/:key", async (req, res) => {

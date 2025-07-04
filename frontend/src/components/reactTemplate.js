@@ -16,8 +16,9 @@ export function getreactComponent({
   associateName,
   diversityDetails,
   associateImageUrl,
+  key,
 }) {
-  return `import React from 'react';
+  return `import React, {useEffect} from 'react';
 
 export default function NewsletterTemplate() {
   // Helper: split text into paragraphs
@@ -40,6 +41,22 @@ export default function NewsletterTemplate() {
         </p>
       ));
   }
+
+  useEffect(() => {
+      const img = newImage();
+      img.src = '/api/analytics/open/${encodeURIComponent(key)}.png?clientTime=' +
+      encodeURIComponent(new Date().toISOString());
+      const start = Date.now();
+      const sendTime = () => {
+        const secs = Math.round((Date.now() - start) / 1000);
+        navigator.sendBeacon(
+          '/api/analytics/time/${encodeURIComponent(key)}',
+          JSON.stringify({ secondsSpent: secs, clientTime: new Date().toISOString() })
+        );
+      };
+      window.addEventListener('beforeunload', sendTime);
+      return () => window.removeEventListener('beforeunload', sendTime);
+    }, [])
 
   return (
     <div className="bg-[#dcebf7] pt-5 pb-10 min-h-screen" style={{ WebkitTextSizeAdjust: '100%' }}>

@@ -587,8 +587,7 @@ export function getEmailHtml({
         </td>
       </tr>
     </table>
-    ${key ? `<img src="/api/analytics/open/${encodeURIComponent(key)}.png" alt="" width="1" height="1" style="display:none;"/>` : ""}
-
+    ${key ? `<script>(function(){var start=Date.now();function send(){var s=Math.round((Date.now()-start)/1000);navigator.sendBeacon('/api/analytics/time/${encodeURIComponent(key)}',JSON.stringify({secondsSpent:s,clientTime:new Date().toISOString()}));}window.addEventListener('beforeunload',send);})();</script>` : ""}
   </body>
 </html>
 `;
