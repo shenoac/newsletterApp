@@ -10,9 +10,10 @@ services:
       - "27017:27017"
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    image: 9574872248/news-backend
     # restart: unless-stopped
     env_file:
       - ./backend/.env
@@ -20,6 +21,22 @@ services:
       - "4000:4000"
     depends_on:
       - mongo
+
+  frontend:
+    # build:
+    #   context: ./frontend
+    image: 9574872248/news-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://backend:4000/api
+  #   command: npm run dev -- --host
+  # Uncomment if  live‐reload in dev
+  # volumes:
+  #   - ./frontend:/usr/src/app
 
 volumes:
   mongo-data:

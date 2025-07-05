@@ -111,7 +111,7 @@ router.get("/stats/:key", async (req, res) => {
       };
     }
     grouped[id].totalOpens += 1;
-    if (typeof o.secondsSpend === "number") {
+    if (typeof o.secondsSpent === "number") {
       grouped[id].totalSeconds += o.secondsSpent;
     }
   }
