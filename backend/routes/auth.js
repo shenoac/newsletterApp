@@ -7,6 +7,7 @@ const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || "secret-keelworks";
 
 router.post("/login", async (req, res) => {
+  console.log("a");
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) return res.status(401).json({ error: "Invalid Credentials" });
@@ -56,8 +57,10 @@ router.post("/change-password", authMiddleware, async (req, res) => {
 });
 
 async function seedTestUsers() {
+  console.log("creating users");
   const testAccounts = [
     { email: "jay.patel@keelworks.org", password: "test@123" },
+    { email: "test@gmail.com", password: "test" },
   ];
 
   for (const { email, password } of testAccounts) {

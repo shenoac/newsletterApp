@@ -17,7 +17,7 @@ app.use(
   cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: "*",
   })
 );
 
@@ -47,4 +47,4 @@ mongoose
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => console.log("API listening on port ${PORT}"));
+app.listen(PORT, () => console.log(`API listening on port ${PORT}`));

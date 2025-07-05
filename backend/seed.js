@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const { seedTestUsers } = require("./routes/auth");
 
 async function main() {
-  const mongoUri =
-    process.env.MONGO_URI || "mongodb://localhost:27017/newsletter";
+  const mongoUri = process.env.MONGO_URI || "mongodb://mongo:27017/newsletter";
   try {
     await mongoose.connect(mongoUri, {
       useNewUrlParser: true,

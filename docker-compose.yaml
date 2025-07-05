@@ -9,7 +9,7 @@ services:
     ports:
       - "27017:27017"
 
-  backend:
+  backend2:
     # build:
     #   context: ./backend
     #   dockerfile: Dockerfile
@@ -30,9 +30,9 @@ services:
     ports:
       - "5173:5173"
     depends_on:
-      - backend
+      - backend2
     environment:
-      - VITE_API_URL=http://backend:4000/api
+      - VITE_API_URL=http://backend2:4000/api
   #   command: npm run dev -- --host
   # Uncomment if  live‐reload in dev
   # volumes:
