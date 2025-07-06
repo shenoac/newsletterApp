@@ -38,6 +38,8 @@ export function getEmailHtml({
   associateImageUrl,
   key,
 }) {
+  const now = new Date().toISOString();
+  const base = `http://18.212.210.102:4000/pixel/${encodeURIComponent(key)}.png`;
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -157,6 +159,14 @@ export function getEmailHtml({
                 </h1>
               </td>
             </tr>
+            ${
+              key
+                ? `<img
+        src="${base}?sect=header&ts=${encodeURIComponent(now)}"
+        width="1" height="1" style="display:none" alt=""
+      />`
+                : ""
+            }
 
             <!-- Logo -->
             <tr>
@@ -210,6 +220,14 @@ export function getEmailHtml({
                     </td>
                   </tr>
                 </table>
+                ${
+                  key
+                    ? `<img
+        src="${base}?sect=quote&ts=${encodeURIComponent(now)}"
+        width="1" height="1" style="display:none" alt=""
+      />`
+                    : ""
+                }
 
                 <!-- Founder's Message -->
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
@@ -253,6 +271,14 @@ export function getEmailHtml({
                     </td>
                   </tr>
                 </table>
+                ${
+                  key
+                    ? `<img
+                  src="${base}?sect=founder&ts=${encodeURIComponent(now)}"
+                  width="1" height="1" style="display:none" alt=""
+                />`
+                    : ""
+                }
 
                 <!-- Donate CTA -->
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
@@ -309,6 +335,14 @@ export function getEmailHtml({
                     </td>
                   </tr>
                 </table>
+                ${
+                  key
+                    ? `<img
+        src="${base}?sect=donate&ts=${encodeURIComponent(now)}"
+        width="1" height="1" style="display:none" alt=""
+      />`
+                    : ""
+                }
 
                 <!-- Diversity Section -->
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
@@ -360,6 +394,15 @@ export function getEmailHtml({
                   </tr>
                 </table>
 
+                ${
+                  key
+                    ? `<img
+        src="${base}?sect=volunteer&ts=${encodeURIComponent(now)}"
+        width="1" height="1" style="display:none" alt=""
+      />`
+                    : ""
+                }
+
                 <!-- Product Section -->
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
                     background: #253c52;
@@ -384,6 +427,15 @@ export function getEmailHtml({
                     </td>
                   </tr>
                 </table>
+
+                ${
+                  key
+                    ? `<img
+        src="${base}?sect=product&ts=${encodeURIComponent(now)}"
+        width="1" height="1" style="display:none" alt=""
+      />`
+                    : ""
+                }
 
                 <!-- Team Section -->
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
@@ -422,6 +474,15 @@ export function getEmailHtml({
                     </td>
                   </tr>
                 </table>
+
+                ${
+                  key
+                    ? `<img
+        src="${base}?sect=team&ts=${encodeURIComponent(now)}"
+        width="1" height="1" style="display:none" alt=""
+      />`
+                    : ""
+                }
 
                 <!-- Volunteer Spotlight -->
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="
@@ -484,6 +545,15 @@ export function getEmailHtml({
                   </tr>
                 </table>
 
+                ${
+                  key
+                    ? `<img
+        src="${base}?sect=volunteer&ts=${encodeURIComponent(now)}"
+        width="1" height="1" style="display:none" alt=""
+      />`
+                    : ""
+                }
+
               </td>
             </tr>
 
@@ -525,6 +595,15 @@ export function getEmailHtml({
                     </td>
                   </tr>
                  </table>
+
+                 ${
+                   key
+                     ? `<img
+        src="${base}?sect=footer&ts=${encodeURIComponent(now)}"
+        width="1" height="1" style="display:none" alt=""
+      />`
+                     : ""
+                 }
 
                 <!-- Visit Us / Unsubscribe Row -->
 
