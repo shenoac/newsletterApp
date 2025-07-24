@@ -15,6 +15,7 @@ import {
   Users,
   Calendar,
 } from "lucide-react";
+import { sendTestEmail } from "../api/email";
 
 export default function NewsletterEditorv2({ draftKey }) {
   const { token } = useAuth();
@@ -227,6 +228,29 @@ export default function NewsletterEditorv2({ draftKey }) {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+  };
+
+  const handleSendTestEmail = async () => {
+    const input = window.prompt(
+      "Enger coma seperated email addresses for test email"
+    );
+    if (!input) return;
+    const emails = input
+      .split(",")
+      .map((e) => e.trim())
+      .filter((e) => e);
+    if (!emails.length) {
+      alert("No email addresses provided");
+      return;
+    }
+    const subject = window.prompt("Email subject", "Newsletter Test Email");
+    try {
+      await sendTestEmail(token, emails, previewHtml, subject);
+      alert("Test email sent");
+    } catch (err) {
+      console.error("Failed to send test email", err);
+      alert("Could not send test email");
+    }
   };
 
   // const handleFestivalCountChange = (e) => {
@@ -655,6 +679,13 @@ export default function NewsletterEditorv2({ draftKey }) {
                     >
                       <Download className="w-4 h-4" />
                       <span>Email</span>
+                    </button>
+                    <button
+                      onClick={handleSendTestEmail}
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-2 text-sm"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span>Send test email</span>
                     </button>
                     <button
                       onClick={downloadReactTemplate}

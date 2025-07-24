@@ -25,9 +25,8 @@ export default function AnalyticsDashboard() {
   if (error) return <div className="p-6">{error}</div>;
   if (!stats) return <div className="p-6">Loading...</div>;
 
-  //   deriving unique users based on user agent string
-  const uniqueViewers = new Set((stats.opens || []).map((o) => o.userAgent))
-    .size;
+  // unique users based on userstats from the api
+  const uniqueViewers = stats.userStats ? stats.userStats.length : 0;
 
   const getDevice = (ua) => {
     if (!ua) return "Unknown";
@@ -57,7 +56,8 @@ export default function AnalyticsDashboard() {
               <tr className="bg-gray-100">
                 <th className="px-2 py-1 text-left">Email Client</th>
                 <th className="px-2 py-1 text-left">Device</th>
-                <th className="px-2 py-1 text-left">Opens</th>
+                <th className="px-2 py-1 text-left">First Open</th>
+                <th className="px-2 py-1 text-left">Last Open</th>
                 <th className="px-2 py-1 text-left">Seconds</th>
               </tr>
             </thead>
@@ -66,8 +66,13 @@ export default function AnalyticsDashboard() {
                 <tr key={idx} className="border-t border-gray-200">
                   <td className="px-2 py-1">{u.emailClient || "-"}</td>
                   <td className="px-2 py-1">{getDevice(u.userAgent)}</td>
-                  <td className="px-2 py-1">{u.totalOpens}</td>
-                  <td className="px-2 py-1">{u.totalSeconds}</td>
+                  <td className="px-2 py-1">
+                    {u.firstSeen ? new Date(u.firstSeen).toLocaleString() : "-"}
+                  </td>
+                  <td className="px-2 py-1">
+                    {u.lastSeen ? new Date(u.lastSeen).toLocaleString() : "-"}
+                  </td>
+                  <td className="px-2 py-1">{u.secondsSpent}</td>
                 </tr>
               ))}
             </tbody>
@@ -75,7 +80,7 @@ export default function AnalyticsDashboard() {
         </div>
       )}
 
-      <h2 className="text-xl font-semibold mb-2">View Details</h2>
+      {/* <h2 className="text-xl font-semibold mb-2">View Details</h2>
       <table className="mb-4 text-sm border border-gray-200">
         <thead>
           <tr className="bg-gray-100">
@@ -99,7 +104,7 @@ export default function AnalyticsDashboard() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }

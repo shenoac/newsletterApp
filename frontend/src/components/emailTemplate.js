@@ -39,7 +39,7 @@ export function getEmailHtml({
   key,
 }) {
   const now = new Date().toISOString();
-  const base = `http://18.212.210.102:4000/pixel/${encodeURIComponent(key)}.png`;
+  const base = `http://18.212.210.102:4000/api/analytics/pixel/${encodeURIComponent(key)}.png`;
   return `
 <!DOCTYPE html>
 <html lang="en">
