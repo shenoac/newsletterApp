@@ -1,5 +1,7 @@
+const API = import.meta.env.VITE_API_URL;
+
 export async function fetchDrafts(token) {
-  const res = await fetch("/api/drafts", {
+  const res = await fetch("${API}/api/drafts", {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
   });
   if (!res.ok) throw new Error("Failed to load drafts");
@@ -10,7 +12,7 @@ export async function fetchDrafts(token) {
 }
 
 export async function fetchDraft(token, key) {
-  const res = await fetch(`/api/drafts/${encodeURIComponent(key)}`, {
+  const res = await fetch(`${API}/api/drafts/${encodeURIComponent(key)}`, {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
   });
   if (!res.ok) throw new Error("Draft not found");
