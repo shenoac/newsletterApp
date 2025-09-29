@@ -1,6 +1,7 @@
 services:
   - type: web
     name: newsletter-frontend
+    runtime: static
     repo: https://github.com/shenoac/newsletterApp
     branch: main
     rootDir: frontend
