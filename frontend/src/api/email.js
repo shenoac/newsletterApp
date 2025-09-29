@@ -1,7 +1,7 @@
 const API = import.meta.env.VITE_API_URL;
 
 export async function sendTestEmail(token, emails, html, subject) {
-  const res = await fetch("${API}/api/email/test", {
+  const res = await fetch(`${API}/api/email/test`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
